@@ -26,29 +26,28 @@ class DatabaseFactory {
     }
 
     /**
-     * Hilfsmethode zum Anlagen von Demodaten. Würde man so in einer
+     * Hilfsmethode zum Anlegen von Demodaten. Würde man so in einer
      * Produktivanwendung natürlich nicht machen, aber so sehen wir
      * wenigstens gleich ein paar Daten.
      */
     async _createDemoData() {
         //// TODO: Methode anpassen, um zur eigenen App passende Demodaten anzulegen ////
         //// oder die Methode ggf. einfach löschen und ihren Aufruf oben entfernen.  ////
-        let examples = this.database.collection("example");
+        let address = this.database.collection("address");
 
-        if (await examples.estimatedDocumentCount() === 0) {
-            examples.insertMany([
+        if (await address.estimatedDocumentCount() === 0) {
+            address.insertMany([
                 {
-                    title: "Cloud Native Architecture and Design",
-                    author: "Shivakumar R Goniwada",
-                    publisher: "Apress",
-                    year: 2022,
-                },
-                {
-                    title: "Machine Learning Kompakt",
-                    author: "Andriy Burkov",
-                    publisher: "mitp",
-                    year: 2019,
-                },
+                    first_name: "Dennis",
+                    last_name: "Schulmeister",
+                    phone: "123456",
+                    email: "dhbw@windows.de",
+                }, {
+                    first_name: "Max",
+                    last_name: "Mustermann",
+                    phone: "456465",
+                    email: "max@mustermann.de",
+                }
             ]);
         }
     }

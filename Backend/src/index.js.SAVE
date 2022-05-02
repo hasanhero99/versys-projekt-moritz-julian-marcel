@@ -4,7 +4,7 @@ import restify from "restify";
 import OpenApiEnforcer from "openapi-enforcer";
 import OpenApiEnforcerMiddleware from "@dschulmeis/restify-openapi-enforcer-middleware";
 
-//// TODO: Klasse ExampleController durch eigene Controller-Klassen ersetzen ////
+//// TODO: Weitere Controller-Klassen importieren ////
 import DatabaseFactory from "./database.js";
 import RootController from "./controller/root.controller.js";
 
