@@ -1,0 +1,543 @@
+openapi: 3.0.0
+info:
+  title: CompetitionAPI
+  version: '1.0'
+  contact:
+    name: Moritz Dieterich
+    email: moritz_24@icloud.com
+  description: 'Modelling of Collections for Competitions, Teams and Gymnasts.'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /:
+    get:
+      summary: Root adress of the webservice to get the HATEOAS_Collections.
+      tags:
+        - Start
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HATEOAS_Collection'
+      operationId: get
+      description: Get HATEOAS links of collections.
+  /teams:
+    get:
+      summary: Show all teams.
+      tags:
+        - Teams
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+      operationId: get-teams
+      description: Search team.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: Search by name of the team.
+        - schema:
+            type: string
+          in: query
+          name: Gymnast1
+          description: Search by gymnast.
+        - schema:
+            type: string
+          in: query
+          name: Gymnast2
+          description: Search by gymnast.
+        - schema:
+            type: string
+          in: query
+          name: Gymnast3
+          description: Search by gymnast.
+        - schema:
+            type: string
+          in: query
+          name: Gymnast4
+          description: Search by gymnast.
+        - schema:
+            type: integer
+          in: query
+          name: id
+          description: Search by ID.
+    post:
+      summary: Add new team.
+      tags:
+        - Teams
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+      operationId: post-teams
+      description: Add team.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+        description: Data for creation fo team.
+  '/teams/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    delete:
+      summary: Delete team.
+      tags:
+        - Team
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      operationId: delete-teams-id
+      description: Delete team.
+    patch:
+      summary: 'Overwrite single Attributes. '
+      tags:
+        - Team
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '404':
+          description: Not Found
+      operationId: patch-teams-id
+      description: Overwrite single Attributes of team.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+    get:
+      summary: Get team.
+      tags:
+        - Team
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '404':
+          description: Not Found
+      operationId: get-teams-id
+      description: Details of one team.
+    put:
+      summary: Overwrite team.
+      tags:
+        - Team
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '404':
+          description: Not Found
+      operationId: put-teams-id
+      description: Overwrite a whole team. Every field with the exception of ID can be overwritten.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+  /gymnasts:
+    get:
+      summary: Receive List of Gymnasts.
+      tags:
+        - Gymnasts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Gymnast'
+      operationId: get-Gymnasts
+      description: Search Gymnast.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: Search by ID.
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: Search by name.
+        - schema:
+            type: string
+          in: query
+          name: surname
+          description: Search by surname.
+    post:
+      summary: Add Gymnast.
+      tags:
+        - Gymnasts
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gymnast'
+      operationId: post-Gymnasts
+      description: Add gymnast.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gymnast'
+    parameters: []
+  '/gymnasts/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get single Gymnast.
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gymnast'
+        '404':
+          description: Not Found
+      operationId: get-Gymnasts-id
+      description: Details of one gymnast.
+    put:
+      summary: Overwrite whole Gymnast.
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gymnast'
+        '404':
+          description: Not Found
+      operationId: put-Gymnasts-id
+      description: Overwrite a whole gymnast. Every field with the exception of ID can be owverwritten.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gymnast'
+    patch:
+      summary: Overwrite single Attributes of Gymnast.
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gymnast'
+        '404':
+          description: Not Found
+      operationId: patch-Gymnasts-id
+      description: Overwrite single Attributes of gymnast.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gymnast'
+    delete:
+      summary: Delete Gymnast.
+      tags: []
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      operationId: delete-Gymnasts-id
+      description: Delete gymnast.
+  /competitions:
+    get:
+      summary: Get list of competitions.
+      tags:
+        - Competitions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+      operationId: get-competitions
+      description: Search Competitions.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+          description: Search by ID.
+        - schema:
+            type: string
+          in: query
+          name: HomeTeam
+          description: Search by Hometeam.
+        - schema:
+            type: string
+          in: query
+          name: AwayTeam
+          description: Search by Awayteam
+        - schema:
+            type: string
+          in: query
+          name: Winner
+          description: Search by team who won.
+    post:
+      summary: Add competition.
+      tags:
+        - Competitions
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+      operationId: post-competitions
+      description: Add Competition.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+  '/competitions/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get single competition.
+      tags:
+        - Competition
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '404':
+          description: Not Found
+      operationId: get-competitions-id
+      description: Details of one Competition.
+    patch:
+      summary: Overwrite single attributes of competition.
+      tags:
+        - Competition
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '404':
+          description: Not Found
+      operationId: patch-competitions-id
+      description: Overwrite single attributes of competitions.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+    put:
+      summary: Overwrite whole competition.
+      tags:
+        - Competition
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+        '404':
+          description: Not Found
+      operationId: put-competitions-id
+      description: Overwrite a whole competition. Every field with the exception of ID can be overwritten.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Competition'
+    delete:
+      summary: Delete competition
+      tags:
+        - Competition
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      operationId: delete-competitions-id
+      description: Delete competition.
+components:
+  schemas:
+    Gymnast:
+      title: Gymnast
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        surname:
+          type: string
+      required:
+        - id
+        - name
+        - surname
+      description: Modeling of a gymnast with name and surname.
+    Team:
+      title: Team
+      type: object
+      description: A Team that consists of 4 Gymnasts and a teamname.
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        Gymnast1:
+          $ref: '#/components/schemas/Gymnast'
+        Gymnast2:
+          $ref: '#/components/schemas/Gymnast'
+        Gymnast3:
+          $ref: '#/components/schemas/Gymnast'
+        Gymnast4:
+          $ref: '#/components/schemas/Gymnast'
+      required:
+        - name
+        - Gymnast1
+        - Gymnast2
+        - Gymnast3
+        - Gymnast4
+    Competition:
+      title: Competition
+      type: object
+      properties:
+        id:
+          type: integer
+        HomeTeam:
+          $ref: '#/components/schemas/Team'
+        AwayTeam:
+          $ref: '#/components/schemas/Team'
+        Winner:
+          $ref: '#/components/schemas/Team'
+        ScoreHomeTeam:
+          $ref: '#/components/schemas/TeamScore'
+        ScoreAwayTeam:
+          $ref: '#/components/schemas/TeamScore'
+    Scores:
+      title: Scores
+      type: object
+      properties:
+        Score1:
+          type: number
+        Score2:
+          type: number
+        Score3:
+          type: number
+        Score4:
+          type: number
+    TeamScore:
+      title: TeamScore
+      type: object
+      properties:
+        Floor:
+          $ref: '#/components/schemas/Scores'
+        PommelHorse:
+          $ref: '#/components/schemas/Scores'
+        Rings:
+          $ref: '#/components/schemas/Scores'
+        Vault:
+          $ref: '#/components/schemas/Scores'
+        ParallelBars:
+          $ref: '#/components/schemas/Scores'
+        HorizontalBars:
+          $ref: '#/components/schemas/Scores'
+    HATEOAS_Collection:
+      title: HATEOAS_Collection
+      type: object
+      properties:
+        _name:
+          type: string
+        query:
+          $ref: '#/components/schemas/HATEOAS_Link'
+        create:
+          $ref: '#/components/schemas/HATEOAS_Link'
+      description: IS used by the root of the rest webservice. For every collection there is a documentation on how to search and create new entries.
+    HATEOAS_Resource:
+      title: HATEOAS_Resource
+      type: object
+      properties:
+        read:
+          $ref: '#/components/schemas/HATEOAS_Link'
+        update:
+          $ref: '#/components/schemas/HATEOAS_Link'
+        patch:
+          $ref: '#/components/schemas/HATEOAS_Link'
+        delete:
+          $ref: '#/components/schemas/HATEOAS_Link'
+      description: 'HATEOS links of a single Ressource of the webservice. This structure tells how details of an entry can be received, changed or deleted.'
+    HATEOAS_Link:
+      title: HATEOAS_Link
+      type: object
+      properties:
+        url:
+          type: string
+        method:
+          type: string
+        query_params:
+          type: array
+          items:
+            type: string
+      description: Information for a single link of HATEOS principle.
+tags:
+  - name: Competition
+  - name: Competitions
+  - name: Gymnast
+  - name: Gymnasts
+  - name: Start
+  - name: Team
+  - name: Teams

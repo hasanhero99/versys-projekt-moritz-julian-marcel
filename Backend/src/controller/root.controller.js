@@ -29,6 +29,7 @@ import { readFile } from "fs/promises";
      * so dass Clients die URL-Struktur des Webservices entdecken können).
      */
     async index(req, res, next) {
+        //wenn mit send aber nicht sendresult funktioniert OpenApi prüfen
         //// TODO: Example-Collection hier durch eigene Collections ersetzen ////
         res.sendResult([
             {
