@@ -8,6 +8,7 @@ import OpenApiEnforcerMiddleware from "@dschulmeis/restify-openapi-enforcer-midd
 import DatabaseFactory from "./database.js";
 import RootController from "./controller/root.controller.js";
 import AddressController from "./controller/address.controller.js";
+import GymnastController from "./controller/gymnast.controller.js";
 
 // Verzeichnisnamen der Quellcodedatei ermitteln
 import path from "path";
@@ -75,7 +76,7 @@ server.opts("*", (req, res, next) => {
 
 // Anfragen und Antworten gegen die OpenAPI-Spezifikation prüfen und dabei
 // fehlerhafte Anfragen oder Antworten mit einer Exception ablehnen.
-const openApiFile = path.relative("", path.join(__dirname, "api", "openapi.yaml"));
+const openApiFile = path.relative("", path.join(__dirname, "api", "CompetitionAPI.yaml"));
 const openApiValidation = await OpenApiEnforcer(openApiFile, {fullResult: true});
 
 const openApiEnforcer = await OpenApiEnforcer(openApiFile, {
@@ -91,6 +92,7 @@ server.use(OpenApiEnforcerMiddleware(openApiEnforcer));
 //// TODO: Weitere Controller-Klassen hinzufügen ////
 new RootController(server, "/", openApiFile);
 new AddressController(server, "/address");
+new GymnastController(server, "/gymnasts");
 
 // server.get("/", function(req, res, next) {
 //     res.send(200, "Hallo, Welt!");

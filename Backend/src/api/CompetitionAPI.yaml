@@ -25,6 +25,16 @@ paths:
                   $ref: '#/components/schemas/HATEOAS_Collection'
       operationId: get
       description: Get HATEOAS links of collections.
+  ########## ABRUF DER OPENAPI.YAML ###################
+  /competitionapi.yaml:
+    get:
+      summary: OpenAPI-Spezifikation des Webservices
+      tags:
+        - Start
+      responses:
+        '200':
+          description: OK
+  ###################################################
   /teams:
     get:
       summary: Show all teams.
@@ -79,6 +89,12 @@ paths:
       responses:
         '201':
           description: Created
+          #### WARNING ######
+          headers:
+            location:
+              schema:
+                type: string
+          ###################
           content:
             application/json:
               schema:
@@ -203,6 +219,12 @@ paths:
       responses:
         '201':
           description: Created
+          #### WARNING ######
+          headers:
+            location:
+              schema:
+                type: string
+          ###################
           content:
             application/json:
               schema:
@@ -328,6 +350,12 @@ paths:
       responses:
         '201':
           description: Created
+          #### WARNING ######
+          headers:
+            location:
+              schema:
+                type: string
+          ###################
           content:
             application/json:
               schema:
