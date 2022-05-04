@@ -1,0 +1,137 @@
+<!-- Stylesheet der Seite -->
+<style>
+    /* FORMULARFELDER */
+    main {
+        background-color: white;
+        padding: 1em;
+    }
+
+    main .form>* {
+        display: block;
+        width: 100%;
+
+        border: 0px solid lightgrey;
+        border-bottom-width: 1px;
+
+        padding: 0.5em 0 0.5em 0;
+        margin-bottom: 1em;
+    }
+
+    /* AKTIONSBUTTONS */
+    main .actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main .actions>div {
+        padding: 0.5em;
+        margin: 0.5em;
+
+        background-color: #e0e0e0;
+        transition: background-color 0.5s;
+
+        flex: 1;
+        text-align: center;
+    }
+
+    main .actions>div:first-child {
+        margin-left: 0;
+    }
+
+    .contenedor {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        float: left;
+    }
+
+    .inp_team {
+        margin-left: 30px;
+        display: block;
+        height: 100%;
+    }
+
+    .gesamtergebnis {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        float: right;
+        
+    }
+
+    .abstand{
+        margin-top: 11.5em;
+    }
+</style>
+
+
+<!-- Hier sind die Felder in denen das Ergebnis angezeigt wird  -->
+<main>
+    <div>
+        <div class="">
+            <div class="list">
+                <div>
+                    <div>
+                        <input type="text" class="inp_team" placeholder="Teamname" value="" disabled="disabled">
+                    </div>
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Boden</p>
+                        <p>Pferd</p>
+                        <p>Ringe</p>
+                    </div>
+                    <div class="contenedor">
+                        <input type="text" class="text_ergebnis_gesamt11" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt12" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt13" disabled="disabled" value="">
+                        
+                    </div>
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Sprung</p>
+                        <p>Barren</p>
+                        <p>Reck</p>
+                        <p>Ergebnis</p>
+                    </div>
+                    <div class="contenedor">
+                        <input type="text" class="text_ergebnis_gesamt14" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt15" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt16" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt17" disabled="disabled" value="">
+                    </div>
+                </div>
+
+                <div class="abstand">
+                    <div>
+                        <input type="text" class="inp_team" placeholder="Teamname" value="" disabled="disabled">
+                    </div>
+
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Boden</p>
+                        <p>Pferd</p>
+                        <p>Ringe</p>
+                    </div>
+                    <div class="contenedor">
+                        <input type="text" class="text_ergebnis_gesamt21" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt22" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt23" disabled="disabled" value="">
+                        
+                    </div>
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Sprung</p>
+                        <p>Barren</p>
+                        <p>Reck</p>
+                        <p>Ergebnis</p>
+                    </div>
+                    <div class="contenedor">
+                        <input type="text" class="text_ergebnis_gesamt24" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt25" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt26" disabled="disabled" value="">
+                        <input type="text" class="text_ergebnis_gesamt27" disabled="disabled" value="">
+                    </div>
+                    <div class="inp_team">
+                        <input type="submit" class="berechnen" value="Ergebnis anzeigen">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

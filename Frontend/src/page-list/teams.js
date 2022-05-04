@@ -1,12 +1,12 @@
 "use strict";
 
 import Page from "../page.js";
-import HtmlTemplate from "./page-list.html";
+import HtmlTemplate from "./teams.html";
 
 /**
  * Klasse PageList: Stellt die Listenübersicht zur Verfügung
  */
-export default class PageList extends Page {
+export default class Teams extends Page {
     /**
      * Konstruktor.
      *
@@ -31,7 +31,7 @@ export default class PageList extends Page {
     async init() {
         // HTML-Inhalt nachladen
         await super.init();
-        this._title = "Übersicht";
+        this._title = "Teams";
 
         //// TODO: Anzuzeigende Inhalte laden mit this._app.backend.fetch() ////
         //// TODO: Inhalte in die HTML-Struktur einarbeiten ////

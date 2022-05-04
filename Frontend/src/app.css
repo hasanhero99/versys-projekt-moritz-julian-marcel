@@ -75,7 +75,6 @@
      margin: 0;
      padding: 0;
      margin-bottom: -3px;
- 
      display: flex;
      justify-content: space-around;
  
@@ -89,8 +88,22 @@
  
  nav li:hover {
      background-color: #505050;
- 
      border: 0px solid rgb(103, 197, 231);
      border-bottom-width: 3px;
  }
+
+ nav ul li{
+     position: relative;
+ }
  
+ nav ul li ul{
+     display: none;
+     position: absolute;
+     background-color: #202020;
+
+ }
+
+ nav ul li:hover ul{
+    display: block;
+
+}

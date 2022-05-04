@@ -25,12 +25,58 @@ class App {
         this.router = new Router([
             {
                 url: "^/$",
-                show: () => this._gotoList()
-            },
-            //// TODO: Eigene Routing-Regeln hier in der Mitte einfügen ////
-            {
+                show: () => this._gotoTeam()
+            },{
+                url: "^/teams/$",
+                show: matches => this._gotoTeam(),
+            },{
+                url: "^/teams/team_hinzufügen/$",
+                show: matches => this._gotoTeam(),
+            },{
+                url: "^/teams/team_bearbeiten/$",
+                show: matches => this._gotoTeam(),
+            },{
+                url: "^/teams/team_anzeigen/$",
+                show: matches => this._gotoTeam(),
+            },{
+                url: "^/wettkampf/$",
+                show: matches => this._gotoErgebnis(),
+            },{
+                url: "^/wettkampf/boden/$",
+                show: matches => this._gotoBoden(),
+            },{
+                url: "^/wettkampf/pferd/$",
+                show: matches => this._gotoPferd(),
+            },{
+                url: "^/wettkampf/ringe/$",
+                show: matches => this._gotoRinge(),
+            },{
+                url: "^/wettkampf/sprung/$",
+                show: matches => this._gotoSprung(),
+            },{
+                url: "^/wettkampf/barren/$",
+                show: matches => this._gotoBarren(),
+            },{
+                url: "^/wettkampf/reck/$",
+                show: matches => this._gotoReck(),
+            },{
+                url: "^/wettkampf/ergebnis/$",
+                show: matches => this._gotoErgebnis(),
+            },{
+                url: "^/turner/$",
+                show: matches => this._gotoErgebnis(),
+            },{
+                url: "^/turner/turner_hinzufügen$",
+                show: matches => this._gotoErgebnis(),
+            },{
+                url: "^/turner/turner_bearbeiten/$",
+                show: matches => this._gotoErgebnis(),
+            },{
+                url: "^/turner/turner_anzeigen/$",
+                show: matches => this._gotoErgebnis(),
+            },{
                 url: ".*",
-                show: () => this._gotoList()
+                show: () => this._gotoTeam()
             },
         ]);
 
@@ -41,6 +87,9 @@ class App {
         this._pageCssElement = document.querySelector("#page-css");
         this._bodyElement = document.querySelector("body");
         this._menuElement = document.querySelector("#app-menu");
+        // this._menuElement = document.querySelector("#team");
+        // this._menuElement = document.querySelector("#comp");
+        // this._menuElement = document.querySelector("#gymnast");
     }
 
     /**
@@ -61,16 +110,101 @@ class App {
     /**
      * Übersichtsseite anzeigen. Wird vom Single Page Router aufgerufen.
      */
-    async _gotoList() {
+    async _gotoTeam() {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
-            let {default: PageList} = await import("./page-list/page-list.js");
+            let {default: Teams} = await import("./page-list/teams.js");
 
-            let page = new PageList(this);
+            let page = new Teams(this);
             await page.init();
-            this._showPage(page, "list");
+            this._showPage(page, "teams");
         } catch (ex) {
-            this.showException(ex);
+            this._showException(ex);
+        }
+    }
+    async _gotoBoden() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Boden} = await import("./page-list/boden.js");
+
+            let page = new Boden(this);
+            await page.init();
+            this._showPage(page, "boden");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+    async _gotoPferd() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Pferd} = await import("./page-list/pferd.js");
+
+            let page = new Pferd(this);
+            await page.init();
+            this._showPage(page, "pferd");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+    async _gotoRinge() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Ringe} = await import("./page-list/ringe.js");
+
+            let page = new Ringe(this);
+            await page.init();
+            this._showPage(page, "ringe");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+    async _gotoSprung() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Sprung} = await import("./page-list/sprung.js");
+
+            let page = new Sprung(this);
+            await page.init();
+            this._showPage(page, "sprung");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+    async _gotoBarren() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Barren} = await import("./page-list/barren.js");
+
+            let page = new Barren(this);
+            await page.init();
+            this._showPage(page, "barren");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+    async _gotoReck() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Reck} = await import("./page-list/reck.js");
+
+            let page = new Reck(this);
+            await page.init();
+            this._showPage(page, "reck");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+    async _gotoErgebnis() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Ergebnis} = await import("./page-list/ergebnis.js");
+
+            let page = new Ergebnis(this);
+            await page.init();
+            this._showPage(page, "ergebnis");
+        } catch (ex) {
+            this._showException(ex);
         }
     }
 
