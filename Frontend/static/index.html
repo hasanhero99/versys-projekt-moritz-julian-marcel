@@ -2,8 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <!-- TODO: Titel ändern -->
-        <title>Beispiel</title>
+        <title>Wettkampfrechner</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Mit esbuild erzeugte Bundles aus allen JS/CSS-Dateien -->
@@ -19,23 +18,62 @@
     <body>
         <!-- Kopfbereich mit Tabreitern -->
         <nav id="app-menu">
-            <!-- TODO: Menü anpassen -->
             <ul>
-                <li data-page-name="list">
-                    <a href="#/">Teams</a>
+                <li data-page-name="team">
+                    <a href="#/teams">Teams</a>
+                    <ul>
+                        <li data-page-name="team_hinzufügen">
+                            <a href="#/teams/team_hinzufügen/">Team hinzufügen</a>
+                        </li>
+                        <li data-page-name="team_bearbeiten">
+                            <a href="#/teams/team_bearbeiten/">Team bearbeiten</a>
+                        </li>
+                        <li data-page-name="team_banzeigen">
+                            <a href="#/teams/team_anzeigen/">Team anzeigen</a>
+                        </li>
+                    </ul>
                 </li>
-                <li data-page-name="new">
-                    <a href="#/new/">Beispiel hinzufügen</a>
+                <li data-page-name="Wettkampf">
+                <a href="#/wettkampf/">Wettkampf</a>
+                <ul>
+                    <li data-page-name="boden">
+                        <a href="#/wettkampf/boden/">Boden</a>
+                    </li>
+                    <li data-page-name="pferd">
+                        <a href="#/wettkampf/pferd/">Pferd</a>
+                    </li>
+                    <li data-page-name="ringe">
+                        <a href="#/wettkampf/ringe/">Ringe</a>
+                    </li>
+                    <li data-page-name="sprung">
+                        <a href="#/wettkampf/sprung/">Sprung</a>
+                    </li>
+                    <li data-page-name="barren">
+                        <a href="#/wettkampf/barren/">Barren</a>
+                    </li>
+                    <li data-page-name="reck">
+                        <a href="#/wettkampf/reck/">Reck</a>
+                    </li>
+                    <li data-page-name="ergebnis">
+                        <a href="#/wettkampf/ergebnis/">Ergebnis</a>
+                    </li>
+                </ul>
                 </li>
-                <li data-page-name="edit" class="non-interactive">
-                    <a>Beispiel bearbeiten</a>
-                </li>
-            </ul>
+                <li data-page-name="Turner">
+                    <a href="#/turner">Turner</a>
+                <ul>
+                    <li data-page-name="turner_hinzufügen">
+                        <a href="#/turner/turner_hinzufügen/">Turner hinzufügen</a>
+                    </li>
+                    <li data-page-name="turner_bearbeiten">
+                        <a href="#/turner/turner_bearbeiten/">Turner bearbeiten</a>
+                    </li>
+                    <li data-page-name="turner_anzeigen">
+                        <a href="#/teams/team_anzeigen/">Team anzeigen</a>
+                    </li>
+                </ul>
+                </li>  
+            </ul>  
         </nav>
-
-        <!--
-            Der Inhalt der aktuellen Seite wird hier mit JavaScript
-            zur Laufzeit als <main>-Element eingebunden.
-        -->
     </body>
 </html>

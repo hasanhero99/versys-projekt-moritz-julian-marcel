@@ -1,0 +1,158 @@
+<!-- Stylesheet der Seite -->
+<style>
+    /* FORMULARFELDER */
+    main {
+        background-color: white;
+        padding: 1em;
+    }
+
+    main .form>* {
+        display: block;
+        width: 100%;
+
+        border: 0px solid lightgrey;
+        border-bottom-width: 1px;
+
+        padding: 0.5em 0 0.5em 0;
+        margin-bottom: 1em;
+    }
+
+    /* AKTIONSBUTTONS */
+    main .actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main .actions>div {
+        padding: 0.5em;
+        margin: 0.5em;
+
+        background-color: #e0e0e0;
+        transition: background-color 0.5s;
+
+        flex: 1;
+        text-align: center;
+    }
+
+    main .actions>div:first-child {
+        margin-left: 0;
+    }
+
+    .contenedor {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        float: left;
+    }
+
+    .inp_team {
+        margin-left: 30px;
+        display: block;
+        height: 100%;
+    }
+
+    .gesamtergebnis {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        float: right;
+        
+    }
+
+    .abstand{
+        margin-top: 11.5em;
+    }
+</style>
+
+
+<!-- Hier ist sind die Eingabefelder vom Boden vorhanden  -->
+<main>
+    <div>
+        <div class="">
+            <div class="list">
+                <div>
+                    <div>
+                        <input type="text" class="inp_team" placeholder="Teamname" value="">
+                    </div>
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Test</p>
+                        <p>Ausgang</p>
+                        <p>Abzug</p>
+                        <p>Wertung</p>
+                    </div>
+                    <div class="contenedor">
+                        <input type="text" class="inp_eingabe11" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam11" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam11" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis11" disabled="disabled" value="0">
+                    </div>
+                    <div class="contenedor" id="eingabe2">
+                        <input type="text" class="inp_eingabe12" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam12" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam12" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis12" disabled="disabled" value="0">
+                    </div>
+                    <div class="contenedor" id="eingabe3">
+                        <input type="text" class="inp_eingabe13" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam13" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam13" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis13" disabled="disabled" value="0">
+                    </div>
+                    <div class="contenedor" id="eingabe4">
+                        <input type="text" class="inp_eingabe14" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam14" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam14" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis14" disabled="disabled" value="0">
+                    </div>
+                    <div class="gesamtergebnis">
+                        <input type="text" class="inp_eingabe_gesamt1" value="Gesamt" disabled="disabled">
+                        <input type="text" class="text_ergebnis_gesamt1" disabled="disabled" value="">
+                    </div>
+                </div>
+
+                <div class="abstand">
+                    <div>
+                        <input type="text" class="inp_team" placeholder="Teamname" value="">
+                    </div>
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Person</p>
+                        <p>Ausgang</p>
+                        <p>Abzug</p>
+                        <p>Wertung</p>
+                    </div>
+                    <div class="contenedor">
+                        <input type="text" class="inp_eingabe" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam21" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam21" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis21" disabled="disabled" value="0">
+                    </div>
+                    <div class="contenedor" id="eingabe2">
+                        <input type="text" class="inp_eingabe" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam22" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam22" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis22" disabled="disabled" value="0">
+                    </div>
+                    <div class="contenedor" id="eingabe3">
+                        <input type="text" class="inp_eingabe" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam23" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam23" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis23" disabled="disabled" value="0">
+                    </div>
+                    <div class="contenedor" id="eingabe4">
+                        <input type="text" class="inp_eingabe" placeholder="Name" value="">
+                        <input type="number" class="inp_auteam24" placeholder="" min="0" value="0">
+                        <input type="number" class="inp_abteam24" placeholder="" min="0" value="0">
+                        <input type="text" class="text_ergebnis24" disabled="disabled" value="0">
+                    </div>
+                    <div class="gesamtergebnis">
+                        <input type="text" class="inp_eingabe_gesamt2" value="Gesamt" disabled="disabled">
+                        <input type="text" class="text_ergebnis_gesamt2" disabled="disabled" value="">
+                    </div>
+                    <div class="inp_team">
+                        <input type="submit" class="berechnen" value="Berechnen">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
