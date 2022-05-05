@@ -29,7 +29,7 @@ export default class TeamController {
      * HATEOAS-Links eines einzelnen Datensatzes einfügen.
      */
     _insertHateoasLinks(entity) {
-        let url = `${this._prefix}/${entity._id}`;
+        let url = `${this._prefix}/${entity.id}`;
 
         entity._links = {
             read:   {url: url, method: "GET"},
@@ -44,40 +44,46 @@ export default class TeamController {
      * Teams suchen
      */
     async search(req, res, next) {
-        // Team in der Datenbank suchen
-       // let result = await this._service.search(req.query);
+        /*// Team in der Datenbank suchen
+        let result = await this._service.search(req.query);
 
         // HATEOAS-Links einbauen
-       // result.forEach(entity => this._insertHateoasLinks(entity));
+        result.forEach(entity => this._insertHateoasLinks(entity));
 
         // Ergebnis senden
-       // res.sendResult(result);
-       res.sendResult([
+        res.sendResult(result); */
+       let result = [
            {
+               id: 1,
                name: "Scorpions",
-               gymnast1: [{
-                   id: "1",
+               Gymnast1: {
+                   id: 1,
                    name: "Karls",
                    surname: "Müller",
-               }],
-               gymnast2: [{
-                id: "2",
+               },
+               Gymnast2: {
+                id: 2,
                 name: "Hans",
                 surname: "Meier",
-            }],
-               gymnast3: [{
-                id: "3",
+            },
+               Gymnast3: {
+                id: 3,
                 name: "Peter",
                 surname: "Ehrmann",
-            }],
-               gymnast4: [{
-                id: "4",
+            },
+               Gymnast4: {
+                id: 4,
                 name: "Dieter",
                 surname: "Henrichs",
-            }],
+               },
            }
 
-       ]);
+       ];
+
+       // HATEOAS-Links einbauen
+       result.forEach(entity => this._insertHateoasLinks(entity));
+       res.sendResult(result);
+
         return next();
     }
 

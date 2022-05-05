@@ -32,10 +32,29 @@ export default class TeamService {
 
         let newTeam = {
             name:      team.name || "",
-            gymnast1:  team.gymnast1  || "",
-            gymnast2:  team.gymnast2  || "",
-            gymnast3:  team.gymnast3  || "",
-            gymnast4:  team.gymnast4  || "",
+            gymnast1:  {
+                id: 5 || "", 
+                name: "team.gymnast1.name" || "", 
+                surname: "team.gymnast1.surname" || "",
+            } || "",
+
+            gymnast2:  {
+                id: 7 || "", 
+                name: "team.gymnast2.name" || "", 
+                surname: "team.gymnast2.surname" || "",
+            }  || "",
+
+            gymnast3:  {
+                id: 8 || "", 
+                name: "team.gymnast3.name" || "", 
+                surname: "team.gymnast3.surname" || "",
+            }  || "",
+
+            gymnast4:  {
+                id: 9 || "", 
+                name: "team.gymnast4.name" || "", 
+                surname: "team.gymnast4.surname" || "",
+            }  || "",
         };
 
         let result = await this._team.insertOne(newTeam);
