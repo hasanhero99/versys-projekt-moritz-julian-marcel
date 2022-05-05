@@ -458,24 +458,18 @@ components:
       type: object
       description: A Team that consists of 4 Gymnasts and a teamname.
       properties:
-        id:
-          type: integer
+        _id:
+          type: string
         name:
           type: string
-        Gymnast1:
-          $ref: '#/components/schemas/Gymnast'
-        Gymnast2:
-          $ref: '#/components/schemas/Gymnast'
-        Gymnast3:
-          $ref: '#/components/schemas/Gymnast'
-        Gymnast4:
-          $ref: '#/components/schemas/Gymnast'
-      required:
-        - name
-        - Gymnast1
-        - Gymnast2
-        - Gymnast3
-        - Gymnast4
+        gymnastID1:
+          type: string
+        gymnastID2:
+          type: string
+        gymnastID3:
+          type: string
+        gymnastID4:
+          type: string
     Competition:
       title: Competition
       type: object
