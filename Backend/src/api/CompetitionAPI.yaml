@@ -446,16 +446,12 @@ components:
       title: Gymnast
       type: object
       properties:
-        id:
-          type: integer
+        _id:
+          type: string
         name:
           type: string
         surname:
           type: string
-      required:
-        - id
-        - name
-        - surname
       description: Modeling of a gymnast with name and surname.
     Team:
       title: Team

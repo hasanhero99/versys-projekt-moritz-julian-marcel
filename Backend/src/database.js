@@ -23,6 +23,8 @@ class DatabaseFactory {
         this.database = this.client.db("app_database");
 
         await this._createDemoData();
+        await this._createDemoDataGymnast();
+        
     }
 
     /**
@@ -47,6 +49,24 @@ class DatabaseFactory {
                     last_name: "Mustermann",
                     phone: "456465",
                     email: "max@mustermann.de",
+                }
+            ]);
+        }
+    }
+
+    async _createDemoDataGymnast() {
+        //// TODO: Methode anpassen, um zur eigenen App passende Demodaten anzulegen ////
+        //// oder die Methode ggf. einfach löschen und ihren Aufruf oben entfernen.  ////
+        let address = this.database.collection("gymnast");
+
+        if (await address.estimatedDocumentCount() === 0) {
+            address.insertMany([
+                {
+                    name: "Marcel",
+                    surname: "Held"
+                }, {
+                    name: "Moritz",
+                    surname: "Dieterich",
                 }
             ]);
         }
