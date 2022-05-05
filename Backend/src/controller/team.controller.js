@@ -29,7 +29,7 @@ export default class TeamController {
      * HATEOAS-Links eines einzelnen Datensatzes einfügen.
      */
     _insertHateoasLinks(entity) {
-        let url = `${this._prefix}/${entity.id}`;
+        let url = `${this._prefix}/${entity._id}`;
 
         entity._links = {
             read:   {url: url, method: "GET"},
@@ -44,45 +44,14 @@ export default class TeamController {
      * Teams suchen
      */
     async search(req, res, next) {
-        /*// Team in der Datenbank suchen
+        // Team in der Datenbank suchen
         let result = await this._service.search(req.query);
 
         // HATEOAS-Links einbauen
         result.forEach(entity => this._insertHateoasLinks(entity));
 
         // Ergebnis senden
-        res.sendResult(result); */
-       let result = [
-           {
-               id: 1,
-               name: "Scorpions",
-               Gymnast1: {
-                   id: 1,
-                   name: "Karls",
-                   surname: "Müller",
-               },
-               Gymnast2: {
-                id: 2,
-                name: "Hans",
-                surname: "Meier",
-            },
-               Gymnast3: {
-                id: 3,
-                name: "Peter",
-                surname: "Ehrmann",
-            },
-               Gymnast4: {
-                id: 4,
-                name: "Dieter",
-                surname: "Henrichs",
-               },
-           }
-
-       ];
-
-       // HATEOAS-Links einbauen
-       result.forEach(entity => this._insertHateoasLinks(entity));
-       res.sendResult(result);
+        res.sendResult(result); 
 
         return next();
     }
@@ -92,16 +61,18 @@ export default class TeamController {
      * Team anlegen
      */
     async create(req, res, next) {
-        // Datensatz in der Datenbank speichern
-        let result = await this._service.create(req.body);
+        
+            // Datensatz in der Datenbank speichern
+            let result = await this._service.create(req.body);
 
-        // HATEOAS-Links einfügen
-        this._insertHateoasLinks(result);
+            // HATEOAS-Links einfügen
+            this._insertHateoasLinks(result);
 
-        // Ergebnis senden
-        res.status(201);
-        res.header("Location", `${this._prefix}/${result._id}`);
-        res.sendResult(result);
+            // Ergebnis senden
+            res.status(201);
+            res.header("Location", `${this._prefix}/${result._id}`);
+            res.sendResult(result);
+        
         return next();
     }
 
