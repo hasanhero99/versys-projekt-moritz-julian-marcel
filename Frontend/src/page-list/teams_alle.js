@@ -32,37 +32,48 @@ export default class Teams_alle extends Page {
         // HTML-Inhalt nachladen
         await super.init();
         this._title = "Teams";
+        let result = await this._app.backend.fetch("GET", "/teams");
 
-        // let result = await this._app.backend.fetch("GET", "/gymnasts");
-        // this._emptyMessageElement = this._mainElement.querySelector(".empty-placeholder");
+        let result1 = this.werte();
 
-        // if (result.length) {
-        //     this._emptyMessageElement.classList.add("hidden");
-        // }
+        //let personen = await this._app.backend.fetch("GET", "/turner");
+        this._emptyMessageElement = this._mainElement.querySelector(".empty-placeholder");
+
+
+        if (result.length) {
+            this._emptyMessageElement.classList.add("hidden");
+        }
 
         // // Je Datensatz einen Listeneintrag generieren
-        // let olElement = this._mainElement.querySelector("ol");
+        let olElement = this._mainElement.querySelector("ol");
 
-        // let templateElement = this._mainElement.querySelector(".list-entry");
-        // let templateHtml = templateElement.outerHTML;
-        // templateElement.remove();
+        let templateElement = this._mainElement.querySelector(".list-entry");
+        let templateHtml = templateElement.outerHTML;
+        templateElement.remove();
         
 
-        // for(let index in result){
-        //     // Platzhalter ersetzen
-        //     let dataset = result[index];
-        //     let html = templateHtml;
-        //     html = html.replace("$ID$", dataset._id);
-        //     html = html.replace("$LAST_NAME$", dataset.surname);
-        //     html = html.replace("$FIRST_NAME$", dataset.name);
+        for(let index in result){
+            // Platzhalter ersetzen
+            let dataset = result[index];
+            let html = templateHtml;
+            html = html.replace("$NAME$", dataset.name);
+            html = html.replace("$ID1$", dataset.gymnastID1);
+            html = html.replace("$ID2$", dataset.gymnastID2);
+            html = html.replace("$ID3$", dataset.gymnastID3);
+            html = html.replace("$ID4$", dataset.gymnastID4);
 
-        //     // Element in die Liste einfügen
-        //     let dummyElement = document.createElement("div");
-        //     dummyElement.innerHTML = html;
-        //     let liElement = dummyElement.firstElementChild;
-        //     liElement.remove();
-        //     olElement.appendChild(liElement);
+            // Element in die Liste einfügen
+            let dummyElement = document.createElement("div");
+            dummyElement.innerHTML = html;
+            let liElement = dummyElement.firstElementChild;
+            liElement.remove();
+            olElement.appendChild(liElement);
             
-        // }
+        }
+    }
+
+    async werte(){
+        let result = await this._app.backend.fetch("GET", "/teams");
+        return result;
     }
 };
