@@ -27,17 +27,17 @@ class App {
                 url: "^/$",
                 show: () => this._gotoTeam()
             },{
-                url: "^/teams$",
+                url: "^/teams/$",
                 show: matches => this._gotoTeam(),
             },{
-                url: "^/teams/team_hinzufuegen/",
-                show: matches => this._gotoBarren(),
+                url: "^/teams/team_hinzufügen/$",
+                show: matches => this._gotoTeam(),
             },{
-                url: "^/teams/team_bearbeiten/",
-                show: matches => this._gotoErgebnis(),
+                url: "^/teams/team_bearbeiten/$",
+                show: matches => this._gotoTeam(),
             },{
-                url: "^/teams/team_anzeigen/",
-                show: matches => this._gotoTurner_alle(),
+                url: "^/teams/team_anzeigen/$",
+                show: matches => this._gotoTeam(),
             },{
                 url: "^/wettkampf/$",
                 show: matches => this._gotoErgebnis(),
@@ -63,17 +63,17 @@ class App {
                 url: "^/wettkampf/ergebnis/$",
                 show: matches => this._gotoErgebnis(),
             },{
-                url: "^/turner$",
-                show: matches => this._gotoBoden(),
-            },{
-                url: "^/turner/turner_hinzufuegen/",
+                url: "^/turner/$",
                 show: matches => this._gotoErgebnis(),
             },{
-                url: "^/turner/turner_bearbeiten/",
-                show: matches => this._gotoBoden(),
+                url: "^/turner/turner_hinzufügen$",
+                show: matches => this._gotoErgebnis(),
             },{
-                url: "^/turner/turner_anzeigen/",
-                show: matches => this._gotoTurner_alle(),
+                url: "^/turner/turner_bearbeiten/$",
+                show: matches => this._gotoErgebnis(),
+            },{
+                url: "^/turner/turner_anzeigen/$",
+                show: matches => this._gotoErgebnis(),
             },{
                 url: ".*",
                 show: () => this._gotoTeam()
@@ -203,19 +203,6 @@ class App {
             let page = new Ergebnis(this);
             await page.init();
             this._showPage(page, "ergebnis");
-        } catch (ex) {
-            this._showException(ex);
-        }
-    }
-
-    async _gotoTurner_alle() {
-        try {
-            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
-            let {default: Turner_alle} = await import("./page-list/turner_alle.js");
-
-            let page = new Turner_alle(this);
-            await page.init();
-            this._showPage(page, "turner_alle");
         } catch (ex) {
             this._showException(ex);
         }

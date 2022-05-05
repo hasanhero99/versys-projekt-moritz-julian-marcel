@@ -17,7 +17,7 @@ export default class GymnastController{
 
         // Ressource: Address (eine einzelne Adresse)
         server.get(prefix + "/:id", wrapHandler(this, this.read));
-        server.put(prefix + "/:id", wrapHandler(this, this.update));
+        server.put(prefix + "/:id", wrapHandler(this, this.put));
         server.patch(prefix + "/:id", wrapHandler(this, this.patch));
         server.del(prefix + "/:id", wrapHandler(this, this.delete));
     }
@@ -110,21 +110,9 @@ export default class GymnastController{
      * @param {*} res 
      * @param {*} next 
      */
-    async update(req,res,next){
-        
-        let result = await this._service.update(req.params.id, req.body);
-        if(result){
-            this._insertHateoasLinks(result)
-            res.sendResult(result);
-        }else{
-            throw new RestifyError.NotFoundError("Datensatz nicht gefunden");
-        }
-        return next();
-    }
+    async put(req,res,next){       
 
-    //patch
-    async patch(req,res,next){
-        if(req.body.name && req.body.surname){
+    if(req.body.name && req.body.surname){
         let result = await this._service.update(req.params.id, req.body);
         if(result){
             this._insertHateoasLinks(result)
@@ -138,6 +126,19 @@ export default class GymnastController{
         return next();
     }
 
+    //patch
+    async patch(req,res,next){
+        let result = await this._service.update(req.params.id, req.body);
+        if(result){
+            this._insertHateoasLinks(result)
+            res.sendResult(result);
+        }else{
+            throw new RestifyError.NotFoundError("Datensatz nicht gefunden");
+        }
+        return next();
+    }
+        
+
     /**
      * DELETE /gymnast
      * delete gymnast
@@ -147,9 +148,14 @@ export default class GymnastController{
      */
     async delete(req,res,next){
         //delete gymnast
-        await this._service.delete(req.params.id);
+        if(await this._service.read(req.params.id)){
+        let count = await this._service.delete(req.params.id);
+        console.log("Deleted " + count + " Entry");
         res.status(204);
         res.sendResult({});
+        }else{
+            throw new RestifyError.NotFoundError("Datensatz nicht gefunden");
+        }
         return next();
     }
 };
