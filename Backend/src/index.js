@@ -9,6 +9,7 @@ import DatabaseFactory from "./database.js";
 import RootController from "./controller/root.controller.js";
 import AddressController from "./controller/address.controller.js";
 import GymnastController from "./controller/gymnast.controller.js";
+import TeamController from "./controller/team.controller.js";
 
 // Verzeichnisnamen der Quellcodedatei ermitteln
 import path from "path";
@@ -93,6 +94,7 @@ server.use(OpenApiEnforcerMiddleware(openApiEnforcer));
 new RootController(server, "/", openApiFile);
 new AddressController(server, "/address");
 new GymnastController(server, "/gymnasts");
+new TeamController(server, "/teams");
 
 // server.get("/", function(req, res, next) {
 //     res.send(200, "Hallo, Welt!");
