@@ -45,39 +45,14 @@ export default class TeamController {
      */
     async search(req, res, next) {
         // Team in der Datenbank suchen
-       // let result = await this._service.search(req.query);
+        let result = await this._service.search(req.query);
 
         // HATEOAS-Links einbauen
-       // result.forEach(entity => this._insertHateoasLinks(entity));
+        result.forEach(entity => this._insertHateoasLinks(entity));
 
         // Ergebnis senden
-       // res.sendResult(result);
-       res.sendResult([
-           {
-               name: "Scorpions",
-               gymnast1: [{
-                   id: "1",
-                   name: "Karls",
-                   surname: "Müller",
-               }],
-               gymnast2: [{
-                id: "2",
-                name: "Hans",
-                surname: "Meier",
-            }],
-               gymnast3: [{
-                id: "3",
-                name: "Peter",
-                surname: "Ehrmann",
-            }],
-               gymnast4: [{
-                id: "4",
-                name: "Dieter",
-                surname: "Henrichs",
-            }],
-           }
+        res.sendResult(result); 
 
-       ]);
         return next();
     }
 
@@ -86,16 +61,18 @@ export default class TeamController {
      * Team anlegen
      */
     async create(req, res, next) {
-        // Datensatz in der Datenbank speichern
-        let result = await this._service.create(req.body);
+        
+            // Datensatz in der Datenbank speichern
+            let result = await this._service.create(req.body);
 
-        // HATEOAS-Links einfügen
-        this._insertHateoasLinks(result);
+            // HATEOAS-Links einfügen
+            this._insertHateoasLinks(result);
 
-        // Ergebnis senden
-        res.status(201);
-        res.header("Location", `${this._prefix}/${result._id}`);
-        res.sendResult(result);
+            // Ergebnis senden
+            res.status(201);
+            res.header("Location", `${this._prefix}/${result._id}`);
+            res.sendResult(result);
+        
         return next();
     }
 
