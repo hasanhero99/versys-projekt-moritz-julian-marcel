@@ -31,12 +31,10 @@ export default class Turner_alle extends Page {
     async init() {
         // HTML-Inhalt nachladen
         await super.init();
-        this._title = "Teams";
+        this._title = "Turner";
 
         let result = await this._app.backend.fetch("GET", "/gymnasts");
         this._emptyMessageElement = this._mainElement.querySelector(".empty-placeholder");
-
-        console.log(this._app.backend.fetch("GET", "/gymnasts"));
 
         if (result.length) {
             this._emptyMessageElement.classList.add("hidden");

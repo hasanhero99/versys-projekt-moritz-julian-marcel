@@ -31,13 +31,13 @@ class App {
                 show: matches => this._gotoTeam(),
             },{
                 url: "^/teams/team_hinzufuegen/",
-                show: matches => this._gotoBarren(),
+                show: matches => this._gotoTeam_hinzufuegen(),
             },{
                 url: "^/teams/team_bearbeiten/",
-                show: matches => this._gotoErgebnis(),
+                show: matches => this._gotoTeam_bearbeiten(),
             },{
                 url: "^/teams/team_anzeigen/",
-                show: matches => this._gotoTurner_alle(),
+                show: matches => this._gotoTeam_alle(),
             },{
                 url: "^/wettkampf/$",
                 show: matches => this._gotoErgebnis(),
@@ -67,10 +67,10 @@ class App {
                 show: matches => this._gotoBoden(),
             },{
                 url: "^/turner/turner_hinzufuegen/",
-                show: matches => this._gotoErgebnis(),
+                show: matches => this._gotoTurner_hinzufuegen(),
             },{
                 url: "^/turner/turner_bearbeiten/",
-                show: matches => this._gotoBoden(),
+                show: matches => this._gotoTurner_bearbeiten(),
             },{
                 url: "^/turner/turner_anzeigen/",
                 show: matches => this._gotoTurner_alle(),
@@ -220,6 +220,72 @@ class App {
             this._showException(ex);
         }
     }
+
+    async _gotoTurner_bearbeiten() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Turner_bearbeiten} = await import("./page-list/turner_bearbeiten.js");
+
+            let page = new Turner_bearbeiten(this);
+            await page.init();
+            this._showPage(page, "turner_bearbeiten");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+    async _gotoTurner_hinzufuegen() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Turner_hinzufuegen} = await import("./page-list/turner_hinzufuegen.js");
+
+            let page = new Turner_hinzufuegen(this);
+            await page.init();
+            this._showPage(page, "turner_hinzufuegen");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+    async _gotoTeam_hinzufuegen() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Teams_hinzufuegen} = await import("./page-list/teams_hinzufuegen.js");
+
+            let page = new Teams_hinzufuegen(this);
+            await page.init();
+            this._showPage(page, "teams_hinzufuegen");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+    async _gotoTeam_alle() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Teams_alle} = await import("./page-list/teams_alle.js");
+
+            let page = new Teams_alle(this);
+            await page.init();
+            this._showPage(page, "teams_alle");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+    async _gotoTeam_bearbeiten() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: Teams_bearbeiten} = await import("./page-list/teams_bearbeiten.js");
+
+            let page = new Teams_bearbeiten(this);
+            await page.init();
+            this._showPage(page, "teams_bearbeiten");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
 
     /**
      * Interne Methode zum Umschalten der sichtbaren Seite.
