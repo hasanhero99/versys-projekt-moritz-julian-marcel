@@ -10,10 +10,12 @@ import RootController from "./controller/root.controller.js";
 import AddressController from "./controller/address.controller.js";
 import GymnastController from "./controller/gymnast.controller.js";
 import TeamController from "./controller/team.controller.js";
+import CompetitionController from "./controller/competition.controller.js";
 
 // Verzeichnisnamen der Quellcodedatei ermitteln
 import path from "path";
 import { fileURLToPath } from "url";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /* =============================================================================
@@ -95,6 +97,8 @@ new RootController(server, "/", openApiFile);
 new AddressController(server, "/address");
 new GymnastController(server, "/gymnasts");
 new TeamController(server, "/teams");
+new CompetitionController(server, "/competitions");
+
 
 // server.get("/", function(req, res, next) {
 //     res.send(200, "Hallo, Welt!");

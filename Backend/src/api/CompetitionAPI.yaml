@@ -25,7 +25,7 @@ paths:
                   $ref: '#/components/schemas/HATEOAS_Collection'
       operationId: get
       description: Get HATEOAS links of collections.
-  ########## ABRUF DER OPENAPI.YAML ###################
+  ########## ABRUF DER .YAML ###################
   /competitionapi.yaml:
     get:
       summary: OpenAPI-Spezifikation des Webservices
@@ -480,14 +480,16 @@ components:
       title: Competition
       type: object
       properties:
-        id:
-          type: integer
-        HomeTeam:
-          $ref: '#/components/schemas/Team'
-        AwayTeam:
-          $ref: '#/components/schemas/Team'
-        Winner:
-          $ref: '#/components/schemas/Team'
+        _id:
+          type: string
+        name:
+          type: string
+        HomeTeamID:
+          type: string
+        AwayTeamID:
+          type: string
+        WinnerTeamID:
+          type: string
         ScoreHomeTeam:
           $ref: '#/components/schemas/TeamScore'
         ScoreAwayTeam:
