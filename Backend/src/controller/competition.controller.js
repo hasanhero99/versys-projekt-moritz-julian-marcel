@@ -1,17 +1,17 @@
 import { wrapHandler } from "../utils.js";
 import RestifyError from "restify-errors";
-import GymnastService from "../service/gymnast.service.js";
+import CompetitionService from "../service/competition.service.js";
 
 /**
  * Http-Handler-Klasse für alle Webservice-Aufrufe rund um die Entität "gymnast"
  */
 
-export default class GymnastController{
+export default class CompetitionController{
     constructor(server, prefix) {
         this._prefix = prefix;
-        this._service = new GymnastService();
+        this._service = new CompetitionService();
 
-        // Collection: Address (Liste von Adressen)
+        // Collection: list of Compitions
         server.get(prefix, wrapHandler(this, this.search));
         server.post(prefix, wrapHandler(this, this.create));
 
@@ -42,8 +42,8 @@ export default class GymnastController{
 
 
     /**
-     * Get /gymnast
-     * Search for gymnast
+     * Get /competition
+     * Search for competition
      * @param {*} req 
      * @param {*} res 
      * @param {*} next 
@@ -59,14 +59,14 @@ export default class GymnastController{
 
 
     /**
-     * POST /gymnast
-     * Add gymnast
+     * POST /competition
+     * Add competition
      * @param {*} req 
      * @param {*} res 
      * @param {*} next 
     */
     async create(req, res, next){
-        if(req.body.name && req.body.surname){
+       if(req.body.name && req.body.HomeTeamID &&req.body.AwayTeamID){
         let result = await this._service.create(req.body);
         
         this._insertHateoasLinks(result);
@@ -74,16 +74,16 @@ export default class GymnastController{
         res.status(201);
         res.header("Location", `${this._prefix}/${result._id}`);
         res.sendResult(result);
-    }else{
+       }else{
         throw new RestifyError.MethodNotAllowedError("Zu wenig Argumente")
-    }
+        }
+       
         return next();
-        
-
+       
     }
 
     /**
-     * 
+     * Get single compition
      * @param {*} req 
      * @param {*} res 
      * @param {*} next 
@@ -103,16 +103,35 @@ export default class GymnastController{
 
     
     /**
-     * PUT /gymnast
-     * PATCH /gymnast
-     * Change single attributes of gymnast
+     * PUT /competition
+     * Change every attribute of competition
      * @param {*} req 
      * @param {*} res 
      * @param {*} next 
      */
-    async put(req,res,next){       
+    async patch(req,res,next){
+        
+        let result = await this._service.update(req.params.id, req.body);
+        if(result){
+            this._insertHateoasLinks(result)
+            res.sendResult(result);
+        }else{
+            throw new RestifyError.NotFoundError("Datensatz nicht gefunden");
+        }
+        return next();
+    }
 
-    if(req.body.name && req.body.surname){
+    /**
+     * PATCH /competition
+     * Change single attributes of competition
+     * @param {*} req 
+     * @param {*} res 
+     * @param {*} next 
+     * @returns 
+     */
+    async put(req,res,next){
+        if(req.body.name && req.body.HomeTeamID && req.body.AwayTeamID && req.body.WinnerTeamID 
+            && req.body.scoreHomeTeam && req.body.scoreAwayTeam){
         let result = await this._service.update(req.params.id, req.body);
         if(result){
             this._insertHateoasLinks(result)
@@ -126,28 +145,14 @@ export default class GymnastController{
         return next();
     }
 
-    //patch
-    async patch(req,res,next){
-        let result = await this._service.update(req.params.id, req.body);
-        if(result){
-            this._insertHateoasLinks(result)
-            res.sendResult(result);
-        }else{
-            throw new RestifyError.NotFoundError("Datensatz nicht gefunden");
-        }
-        return next();
-    }
-        
-
     /**
-     * DELETE /gymnast
-     * delete gymnast
+     * DELETE /competition
+     * delete competition
      * @param {*} res 
      * @param {*} req 
      * @param {*} next 
      */
     async delete(req,res,next){
-        //delete gymnast
         if(await this._service.read(req.params.id)){
         let count = await this._service.delete(req.params.id);
         console.log("Deleted " + count + " Entry");
