@@ -6,7 +6,7 @@ import HtmlTemplate from "./teams_hinzufuegen.html";
 /**
  * Klasse PageList: Stellt die Listenübersicht zur Verfügung
  */
-export default class Teams_hinzufuegen extends Page {
+export default class teams_hinzufuegen extends Page {
     /**
      * Konstruktor.
      *
@@ -32,6 +32,5 @@ export default class Teams_hinzufuegen extends Page {
         // HTML-Inhalt nachladen
         await super.init();
         this._title = "Teams";
-
     }
 };
