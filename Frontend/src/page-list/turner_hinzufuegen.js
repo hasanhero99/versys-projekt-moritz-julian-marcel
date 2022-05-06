@@ -31,7 +31,50 @@ export default class Turner_hinzufuegen extends Page {
     async init() {
         // HTML-Inhalt nachladen
         await super.init();
-        this._title = "Teams";
 
+        this._title = "Turner hinzufügen";
+
+        let saveButton = this._mainElement.querySelector(".action.save");
+        saveButton.addEventListener("click", () => this._saveAndExit());
+        this._url = "/gymnasts"
+
+        this._dataset = {name:"",surename:""};
+
+        // Eingabefelder zur späteren Verwendung merken
+        this._firstNameInput = this._mainElement.querySelector("input.name");
+        this._lastNameInput  = this._mainElement.querySelector("input.surname");
+
+
+    }
+
+    async _saveAndExit() {
+        // Eingegebene Werte prüfen
+        this._dataset.name = this._firstNameInput.value.trim();
+        this._dataset.surname  = this._lastNameInput.value.trim();
+
+        if (!this._dataset.name) {
+            alert("Geben Sie erst einen Vornamen ein.");
+            return;
+        }
+
+        if (!this._dataset.surname) {
+            alert("Geben Sie erst einen Nachnamen ein.");
+            return;
+        }
+
+        // Datensatz speichern
+        try {
+            console.log(this._dataset);
+        
+            if (this._editId) {
+                
+                await this._app.backend.fetch("PUT", this._url, {body: this._dataset});
+            } else {
+                await this._app.backend.fetch("POST", this._url, {body: this._dataset});
+            }
+        } catch (ex) {
+            this._app.showException(ex);
+            return;
+        }
     }
 };

@@ -31,7 +31,6 @@ export default class Turner_bearbeiten extends Page {
     async init() {
         // HTML-Inhalt nachladen
         await super.init();
-        this._title = "Teams";
 
     }
 };

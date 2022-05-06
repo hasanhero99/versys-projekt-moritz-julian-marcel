@@ -34,11 +34,9 @@ export default class Teams_alle extends Page {
         this._title = "Teams";
         let result = await this._app.backend.fetch("GET", "/teams");
 
-        let result1 = this.werte();
-
-        //let personen = await this._app.backend.fetch("GET", "/turner");
+        let personen = await this._app.backend.fetch("GET", "/gymnasts");
         this._emptyMessageElement = this._mainElement.querySelector(".empty-placeholder");
-
+        console.log(personen);
 
         if (result.length) {
             this._emptyMessageElement.classList.add("hidden");
@@ -56,11 +54,22 @@ export default class Teams_alle extends Page {
             // Platzhalter ersetzen
             let dataset = result[index];
             let html = templateHtml;
+            for (let index2 in personen){
+                if (dataset.gymnastID1 == personen[index2]._id){
+                    html = html.replace("$ID1$", "" + personen[index2].name + " " + personen[index2].surname);
+                }
+                if (dataset.gymnastID2 == personen[index2]._id){
+                    html = html.replace("$ID2$", "" + personen[index2].name + " " + personen[index2].surname);
+                }
+                if (dataset.gymnastID3 == personen[index2]._id){
+                    html = html.replace("$ID3$", "" + personen[index2].name + " " + personen[index2].surname);
+                }
+                if (dataset.gymnastID4 == personen[index2]._id){
+                    html = html.replace("$ID4$", "" + personen[index2].name + " " + personen[index2].surname);
+                }
+            }
+            
             html = html.replace("$NAME$", dataset.name);
-            html = html.replace("$ID1$", dataset.gymnastID1);
-            html = html.replace("$ID2$", dataset.gymnastID2);
-            html = html.replace("$ID3$", dataset.gymnastID3);
-            html = html.replace("$ID4$", dataset.gymnastID4);
 
             // Element in die Liste einfügen
             let dummyElement = document.createElement("div");
@@ -70,10 +79,5 @@ export default class Teams_alle extends Page {
             olElement.appendChild(liElement);
             
         }
-    }
-
-    async werte(){
-        let result = await this._app.backend.fetch("GET", "/teams");
-        return result;
     }
 };

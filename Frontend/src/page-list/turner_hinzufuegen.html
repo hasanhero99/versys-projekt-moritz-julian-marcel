@@ -1,30 +1,20 @@
 <!-- Stylesheet der Seite -->
 <style>
-    /* LISTENEINTRÄGE */
-    main ol {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    /* FORMULARFELDER */
+    main {
+        background-color: white;
+        padding: 1em;
     }
 
-    main li {
-        margin: 0;
-        padding: 1em;
-        padding-bottom: 0.5em;
-
-        background-color: white;
-        transition: background-color 0.5s;
+    main .form > * {
+        display: block;
+        width: 100%;
 
         border: 0px solid lightgrey;
         border-bottom-width: 1px;
-    }
 
-    main li:hover {
-        background-color: #fafafa;
-    }
-
-    main .name {
-        font-size: 150%;
+        padding: 0.5em 0 0.5em 0;
+        margin-bottom: 1em;
     }
 
     /* AKTIONSBUTTONS */
@@ -60,7 +50,15 @@
 
 <!-- Inhalt der Seite -->
 <main>
-    <ol>
-       <li>Turner hinzufügen</li> 
-    </ol>
+    <div>
+        <div class="form">
+            <input class="name" placeholder="Vorname" value="" />
+            <input class="surname" placeholder="Nachname" value="" />
+        </div>
+        <div class="actions">
+            <div class="action save">
+                <a>💾</a>
+            </div>
+        </div>
+    </div>
 </main>
