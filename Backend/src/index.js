@@ -3,8 +3,6 @@
 import restify from "restify";
 import OpenApiEnforcer from "openapi-enforcer";
 import OpenApiEnforcerMiddleware from "@dschulmeis/restify-openapi-enforcer-middleware";
-
-//// TODO: Weitere Controller-Klassen importieren ////
 import DatabaseFactory from "./database.js";
 import RootController from "./controller/root.controller.js";
 import AddressController from "./controller/address.controller.js";
@@ -22,7 +20,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * SERVER-KONFIGURATION
  * =============================================================================*/
 
-// Auslesen der Umgebungsvariablen zur Konfiguration des Servers
 const config = {
     port:    parseInt(process.env.PORT) || 3000,
     host:    process.env.HOST           || "localhost",

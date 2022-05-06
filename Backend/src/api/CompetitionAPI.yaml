@@ -26,7 +26,7 @@ paths:
       operationId: get
       description: Get HATEOAS links of collections.
   ########## ABRUF DER OPENAPI.YAML ###################
-  /competitionapi.yaml:
+  /openapi.yaml:
     get:
       summary: OpenAPI-Spezifikation des Webservices
       tags:
