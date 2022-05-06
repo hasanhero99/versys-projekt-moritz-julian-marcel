@@ -42,6 +42,9 @@ class App {
                 url: "^/wettkampf/$",
                 show: matches => this._gotoErgebnis(),
             },{
+                url: "^/wettkampf/alleWettkaempfe/$",
+                show: matches => this._gotoAlleWettkaempfe(),
+            },{
                 url: "^/wettkampf/boden/$",
                 show: matches => this._gotoBoden(),
             },{
@@ -122,6 +125,20 @@ class App {
             this._showException(ex);
         }
     }
+    async _gotoAlleWettkaempfe() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: alleWettkaempfe} = await import("./page-list/wettkampf_alle.js");
+
+            let page = new alleWettkaempfe(this);
+            await page.init();
+            this._showPage(page, "alleWettkaempfe");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+    
     async _gotoBoden() {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
