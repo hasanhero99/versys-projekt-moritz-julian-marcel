@@ -32,11 +32,16 @@ export default class Teams_alle extends Page {
         // HTML-Inhalt nachladen
         await super.init();
         this._title = "Teams";
-        let result = await this._app.backend.fetch("GET", "/teams");
 
+        //Anfrage an Datenbank und Speichern der Daten
+        let result = await this._app.backend.fetch("GET", "/teams");
         let personen = await this._app.backend.fetch("GET", "/gymnasts");
+
+        console.log(this._app.backend.fetch("GET", "/teams"));
+        console.log(this._app.backend.fetch("GET", "/gymnasts"));
+
+        //Falls die Datenbank leer ist
         this._emptyMessageElement = this._mainElement.querySelector(".empty-placeholder");
-        console.log(personen);
 
         if (result.length) {
             this._emptyMessageElement.classList.add("hidden");
@@ -44,7 +49,6 @@ export default class Teams_alle extends Page {
 
         // // Je Datensatz einen Listeneintrag generieren
         let olElement = this._mainElement.querySelector("ol");
-
         let templateElement = this._mainElement.querySelector(".list-entry");
         let templateHtml = templateElement.outerHTML;
         templateElement.remove();
