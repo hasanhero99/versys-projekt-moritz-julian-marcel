@@ -75,8 +75,8 @@ class App {
                 url: "^/turner/turner_hinzufuegen/",
                 show: matches => this._gotoTurner_hinzufuegen(),
             },{
-                url: "^/turner/turner_bearbeiten/",
-                show: matches => this._gotoTurner_bearbeiten(),
+                url: "^/turner/turner_bearbeiten/(.*)$",
+                show: matches => this._gotoTurner_bearbeiten(matches[1]),
             },{
                 url: "^/turner/turner_anzeigen/",
                 show: matches => this._gotoTurner_alle(),
@@ -242,12 +242,12 @@ class App {
         }
     }
 
-    async _gotoTurner_bearbeiten() {
+    async _gotoTurner_bearbeiten(id) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Turner_bearbeiten} = await import("./page-list/turner_bearbeiten.js");
 
-            let page = new Turner_bearbeiten(this);
+            let page = new Turner_bearbeiten(this, id);
             await page.init();
             this._showPage(page, "turner_bearbeiten");
         } catch (ex) {
