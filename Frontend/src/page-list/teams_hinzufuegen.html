@@ -62,6 +62,36 @@
     .abstand{
         margin-top: 7.5em;
     }
+
+     /* AKTIONSBUTTONS */
+     main .actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main .actions>div {
+        padding: 0.5em;
+        margin: 0.5em;
+
+        background-color: #e0e0e0;
+        transition: background-color 0.5s;
+
+        flex: 1;
+        text-align: center;
+    }
+
+    main .actions>div:first-child {
+        margin-left: 0;
+    }
+
+    main .actions>div:last-child {
+        margin-right: 0;
+    }
+
+    main .actions>div:hover {
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
 </style>
 
 
@@ -75,7 +105,7 @@
                         <p>Teamname</p>
                     </div>
                     <div>
-                        <input type="text" class="inp_team" placeholder="" value="">
+                        <input type="text" class="inp_team" placeholder="Teamname" value="">
                     </div>
                     <div class="contenedor" id="ueberschrife">
                         <p>Teammitglied 1</p>
@@ -84,16 +114,15 @@
                         <p>Teammitglied 4</p>
                     </div>
                     <div class="contenedor">
-                        <input type="text" class="text_ergebnis_team11" value="">
-                        <input type="text" class="text_ergebnis_team12" value="">
-                        <input type="text" class="text_ergebnis_team13" value="">
-                        <input type="text" class="text_ergebnis_team13" value="">
-                        
+                        <div id="container1"></div>
+                        <div id="container2"></div>
+                        <div id="container3"></div>
+                        <div id="container4"></div>
                     </div>
-                </div>
-                <div class="abstand">
-                    <div class="inp_team">
-                        <input type="submit" class="speichern" value="Team speichern">
+                    <div class="actions">
+                        <div class="action save">
+                            <a>💾</a>
+                        </div>
                     </div>
                 </div>
             </div>

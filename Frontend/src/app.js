@@ -40,7 +40,7 @@ class App {
                 show: matches => this._gotoTeam_alle(),
             },{
                 url: "^/wettkampf/$",
-                show: matches => this._gotoErgebnis(),
+                show: matches => this._gotoWettkampf_hinzufuegen(),
             },{
                 url: "^/wettkampf/alleWettkaempfe/$",
                 show: matches => this._gotoAlleWettkaempfe(),
@@ -70,7 +70,7 @@ class App {
                 show: matches => this._gotoErgebnis(),
             },{
                 url: "^/turner$",
-                show: matches => this._gotoBoden(),
+                show: matches => this._gotoTurner_hinzufuegen(),
             },{
                 url: "^/turner/turner_hinzufuegen/",
                 show: matches => this._gotoTurner_hinzufuegen(),

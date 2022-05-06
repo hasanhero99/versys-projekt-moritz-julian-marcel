@@ -42,43 +42,59 @@ export default class wettkampf_hinzufuegen extends Page {
         this._dataset = { name: "", HomeTeamID: "", AwayTeamID: "", WinnerTeamID: "", scoreHomeTeam: {}, scoreAwayTeam: {} };
 
         // Eingabefelder zur späteren Verwendung merken
-        this.name = this._mainElement.querySelector("#name");
-        this.HomeTeamID = this._mainElement.querySelector("#HomeTeamID");
-        this.AwayTeamID = this._mainElement.querySelector("#AwayTeamID");
+        this.name = this._mainElement.querySelector("input.name");
+        // this.HomeTeamID = this._mainElement.querySelector("#HomeTeamID");
+        // this.AwayTeamID = this._mainElement.querySelector("#AwayTeamID");
 
+        let result = await this._app.backend.fetch("GET", "/teams");
 
-
-
-        //Wichtig um an das Ausgewählt Dokument zu kommen
-        document.getElementById("pets").value
-        //Auswahlbox erstellen
-        var values = ["dog", "cat", "parrot", "rabbit"];
-
+        //Festlegender select Elementen
         var select = document.createElement("select");
-        select.name = "pets";
-        select.id = "pets"
+        select.name = "teams";
+        select.id = "teams";
 
-        for (const val of values) {
+        var select2 = document.createElement("select");
+        select2.name = "teams2";
+        select2.id = "teams2";
+
+        //Erstellen des Heimteam
+
+        for (let index in result){
             var option = document.createElement("option");
-            option.value = val;
-            option.text = val.charAt(0).toUpperCase() + val.slice(1);
-            option.id = val;
+            option.value = result[index]._id;
+            option.text = result[index].name;
+            option.id = result[index]._id;
             select.appendChild(option);
+
         }
-
         var label = document.createElement("label");
-        label.innerHTML = "Choose your pets: "
-        label.htmlFor = "pets";
-
+        label.innerHTML = "Heimteam: "
+        label.htmlFor = "Heimteam";
         this._mainElement.querySelector("#container").appendChild(label).appendChild(select);
+
+        //Erstellen des Auswärtsteam
+
+        for (let index in result){
+            var option2 = document.createElement("option");
+            option2.value = result[index]._id;
+            option2.text = result[index].name;
+            option2.id = result[index]._id;
+            select2.appendChild(option2);
+
+        }
+        var label2 = document.createElement("label");
+        label2.innerHTML = "Auswärtsteam: "
+        label2.htmlFor = "Auswärtsteam";
+        this._mainElement.querySelector("#container2").appendChild(label2).appendChild(select2);
 
     }
 
     async _saveAndExit() {
         // Eingegebene Werte prüfen
         this._dataset.name = this.name.value.trim();
-        this._dataset.HomeTeamID = this.HomeTeamID.value.trim();
-        this._dataset.AwayTeamID = this.AwayTeamID.value.trim();
+        console.log(document.getElementById("teams").value);
+        this._dataset.HomeTeamID = document.getElementById("teams").value.trim();
+        this._dataset.AwayTeamID = document.getElementById("teams2").value.trim();
 
         if (!this._dataset.name) {
             alert("Geben Sie erst einen Wettkampf ein.");
