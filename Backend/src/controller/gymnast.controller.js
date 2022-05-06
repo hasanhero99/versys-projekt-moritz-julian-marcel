@@ -150,7 +150,7 @@ export default class GymnastController{
         //delete gymnast
         if(await this._service.read(req.params.id)){
         let count = await this._service.delete(req.params.id);
-        console.log("Deleted " + count + " Entry");
+        console.log(new Date(), "DELETED " + count + " ENTRY WITH ID: " + req.params.id);
         res.status(204);
         res.sendResult({});
         }else{

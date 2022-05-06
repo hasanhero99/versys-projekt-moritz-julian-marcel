@@ -120,12 +120,14 @@ export default class TeamController {
      * Einzelnes Team löschen
      */
     async delete(req, res, next) {
-        // Adresse in der Datenbank löschen
-        await this._service.delete(req.params.id);
-
-        // Antwort senden
-        res.status(204);
-        res.sendResult({});
+        if(await this._service.read(req.params.id)){
+            let count = await this._service.delete(req.params.id);
+            console.log(new Date(), "DELETED " + count + " ENTRY WITH ID: " + req.params.id);
+            res.status(204);
+            res.sendResult({});
+        }else{
+            throw new RestifyError.NotFoundError("Datensatz nicht gefunden");
+        }
         return next();
     }
 };
