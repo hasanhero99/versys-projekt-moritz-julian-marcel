@@ -331,12 +331,12 @@ paths:
         - schema:
             type: string
           in: query
-          name: HomeTeam
+          name: HomeTeamID
           description: Search by Hometeam.
         - schema:
             type: string
           in: query
-          name: AwayTeam
+          name: AwayTeamID
           description: Search by Awayteam
         - schema:
             type: string

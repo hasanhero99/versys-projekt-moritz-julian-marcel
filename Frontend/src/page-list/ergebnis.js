@@ -28,32 +28,74 @@ export default class Ergebnis extends Page {
         await super.init();
         this._title = "Ergebnis";
         let templateElement = this._mainElement.querySelector(".list");
-        templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne());
-    }
-    // Hier findet die berechnung bei Klicken auf den Button statt
-    async berechne(){
-        let templateElement = this._mainElement.querySelector(".list");
-        var ergebnis;
-        for(var i = 1; i < 3; i++){
-            this.team = [];
-            ergebnis = 0;
-            for(var j = 1; j < 5; j++){
-                this.hilfAusgang = templateElement.querySelector(".inp_auteam" + i + j).value;
-                this.hilfAbzug = templateElement.querySelector(".inp_abteam" + i + j).value;
-                this.ergebnis = 10 + parseFloat(this.hilfAusgang) - parseFloat(this.hilfAbzug);
-                console.log(Math.max.apply(Math,this.team));
-                templateElement.querySelector(".text_ergebnis" + i + j).value = this.ergebnis.toFixed(2);
+        //templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne());
 
-            }
-            var myIndex = this.team.indexOf(Math.min.apply(Math,this.team));
-            if (myIndex !== -1) {
-            this.team.splice(myIndex, 1);
-            }
-            for(let i = 0; i < this.team.length; i++){
-                ergebnis += this.team[i];
-            }
-            templateElement.querySelector(".text_ergebnis_gesamt" + i).value = ergebnis.toFixed(2);
-            
+        let id = "6275659cd5e2a4d163e92287";
+
+
+        //Wettkampf holen
+        let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
+
+
+        //Teams aus Wettkampf holen
+        let homeTeam = await this._app.backend.fetch("GET", "/teams/" + competition.HomeTeamID);
+        let awayTeam = await this._app.backend.fetch("GET", "/teams/" + competition.AwayTeamID);
+
+         
+
+        //Teamnamen eintragen
+        templateElement.querySelector(".inp_team").value = homeTeam.name;
+        templateElement.querySelector(".inp_team2").value = awayTeam.name;
+
+        // //Ergebnisse eintragen
+        templateElement.querySelector(".text_ergebnis_gesamt11").value = await this.ergebnis(competition.scoreHomeTeam.Floor.Scores,
+            competition.scoreHomeTeam.Floor.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt12").value = await this.ergebnis(competition.scoreHomeTeam.Pommelhorse.Scores,
+             competition.scoreHomeTeam.Pommelhorse.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt13").value = await this.ergebnis(competition.scoreHomeTeam.Rings.Scores,
+            competition.scoreHomeTeam.Rings.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt14").value = await this.ergebnis(competition.scoreHomeTeam.Vault.Scores,
+            competition.scoreHomeTeam.Vault.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt15").value = await this.ergebnis(competition.scoreHomeTeam.ParallelBars.Scores,
+            competition.scoreHomeTeam.ParallelBars.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt16").value = await this.ergebnis(competition.scoreHomeTeam.HorizontalBars.Scores,
+            competition.scoreHomeTeam.HorizontalBars.Scores.Score1);
+
+        templateElement.querySelector(".text_ergebnis_gesamt21").value = await this.ergebnis(competition.scoreAwayTeam.Floor.Scores,
+            competition.scoreAwayTeam.Floor.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt22").value = await this.ergebnis(competition.scoreAwayTeam.Pommelhorse.Scores,
+            competition.scoreAwayTeam.Pommelhorse.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt23").value = await this.ergebnis(competition.scoreAwayTeam.Rings.Scores,
+            competition.scoreAwayTeam.Rings.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt24").value = await this.ergebnis(competition.scoreAwayTeam.Vault.Scores,
+            competition.scoreAwayTeam.Vault.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt25").value = await this.ergebnis(competition.scoreAwayTeam.ParallelBars.Scores,
+            competition.scoreAwayTeam.ParallelBars.Scores.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt26").value = await this.ergebnis(competition.scoreAwayTeam.HorizontalBars.Scores,
+            competition.scoreAwayTeam.HorizontalBars.Scores.Score1);
+   
+        
+
+    }
+    
+
+    async ergebnis(scores,help){
+        let help2=0;
+        let score = 0;
+
+         for(let index in scores){                
+             if(parseFloat(scores[index]) < help){
+                 help = parseFloat(scores[index]);
+                 help2 = index;                
+             }            
         }
+        scores[help2] = 0.00;
+
+        for(let index2 in scores){
+             console.log(scores[index2]);
+             score = score + parseFloat(scores[index2]);
+        }
+
+        return parseFloat(score);
     }
 };
