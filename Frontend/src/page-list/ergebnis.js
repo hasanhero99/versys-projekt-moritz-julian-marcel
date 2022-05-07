@@ -12,8 +12,10 @@ export default class Ergebnis extends Page {
      *
      * @param {App} app Instanz der App-Klasse
      */
-    constructor(app) {
+    constructor(app, wettkampfID) {
         super(app, HtmlTemplate);
+
+        this._wettkampfID = wettkampfID;
 
         this._emptyMessageElement = null;
     }
@@ -26,12 +28,15 @@ export default class Ergebnis extends Page {
     async init() {
         // HTML-Inhalt nachladen
         await super.init();
+
+        console.log("Starte Ergebnis");
+
         this._title = "Ergebnis";
         let templateElement = this._mainElement.querySelector(".list");
         let templateElement1 = this._mainElement.querySelector(".submit");
         
 
-        let id = "627641952f029327f02f7f9a";
+        let id = this._wettkampfID;
         templateElement1.querySelector(".fertig").addEventListener("click", () => this.speichern(competition,resultH,resultA,id));
 
 
@@ -104,7 +109,7 @@ export default class Ergebnis extends Page {
 
         if(competition.WinnerTeamID == "beendet"){
             this.speichern(competition,resultH,resultA,id);
-    }
+    } 
 
     }
 
@@ -146,7 +151,15 @@ export default class Ergebnis extends Page {
                 }
             } );
             
+        }else if(resultH == resultA){
+            await this._app.backend.fetch("PATCH", "/competitions/" + id,{
+                body: {
+                    "WinnerTeamID": "Unentschieden"
+                }
+            } );
         }
+
+
         window.location.reload();
     }
 };

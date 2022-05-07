@@ -12,8 +12,10 @@ export default class Barren extends Page {
      *
      * @param {App} app Instanz der App-Klasse
      */
-    constructor(app) {
+    constructor(app, wettkampfID) {
         super(app, HtmlTemplate);
+
+        this._wettkampfID = wettkampfID;
 
         this._emptyMessageElement = null;
     }
@@ -26,15 +28,26 @@ export default class Barren extends Page {
     async init() {
         // HTML-Inhalt nachladen
         await super.init();
+
+        console.log("Starte Barren");
+
         this._title = "Barren";
         let templateElement = this._mainElement.querySelector(".list");
-        let id = "627641952f029327f02f7f9a";
+        let id = this._wettkampfID;
         this.load(id, templateElement);
         templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne(id));
         let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
         this.hide(competition, templateElement);
         templateElement.querySelector(".fertig").addEventListener("click", () => this.next(location,id));
 
+        let buttonPferd = this._mainElement.querySelector(".navigation");
+
+        buttonPferd.querySelector(".navBoden").addEventListener("click", () => location.hash = `#/wettkampf/boden/${id}`);
+        buttonPferd.querySelector(".navRinge").addEventListener("click", () => location.hash = `#/wettkampf/ringe/${id}`);
+        buttonPferd.querySelector(".navSprung").addEventListener("click", () => location.hash = `#/wettkampf/sprung/${id}`);
+        buttonPferd.querySelector(".navPferd").addEventListener("click", () => location.hash = `#/wettkampf/pferd/${id}`);
+        buttonPferd.querySelector(".navReck").addEventListener("click", () => location.hash = `#/wettkampf/reck/${id}`);
+        buttonPferd.querySelector(".navErgebnis").addEventListener("click", () => location.hash = `#/wettkampf/ergebnis/${id}`);
         
         
         
@@ -200,6 +213,6 @@ export default class Barren extends Page {
             body: { "WinnerTeamID": "beendet" }
 
         })
-        location.hash = "#/wettkampf/ergebnis/";
+        location.hash = `#/wettkampf/ergebnis/${id}`;
     }
 };

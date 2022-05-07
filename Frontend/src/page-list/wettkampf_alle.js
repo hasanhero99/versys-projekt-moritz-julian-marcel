@@ -69,6 +69,10 @@ export default class alleWettkaempfe extends Page {
                     html = html.replace("$WinnerTeam$", "");
                     
                 }
+                if(dataset.WinnerTeamID == "Unentschieden"){
+                    html = html.replace("$WinnerTeam$", "Unentschieden");
+                    
+                }
                 
             }
             
@@ -80,6 +84,8 @@ export default class alleWettkaempfe extends Page {
             let liElement = dummyElement.firstElementChild;
             liElement.remove();
             olElement.appendChild(liElement);
+
+            liElement.querySelector(".buttonLink").addEventListener("click", () => location.hash = `#/wettkampf/boden/${dataset._id}`);
             
         }
     }

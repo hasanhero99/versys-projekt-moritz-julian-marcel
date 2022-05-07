@@ -48,26 +48,26 @@ class App {
                 url: "^/wettkampf/wettkampf_hinzufuegen/$",
                 show: matches => this._gotoWettkampf_hinzufuegen(),
             },{
-                url: "^/wettkampf/boden/$",
-                show: matches => this._gotoBoden(),
+                url: "^/wettkampf/boden/(.*)$",
+                show: matches => this._gotoBoden(matches[1]),
             },{
-                url: "^/wettkampf/pferd/$",
-                show: matches => this._gotoPferd(),
+                url: "^/wettkampf/pferd/(.*)$",
+                show: matches => this._gotoPferd(matches[1]),
             },{
-                url: "^/wettkampf/ringe/$",
-                show: matches => this._gotoRinge(),
+                url: "^/wettkampf/ringe/(.*)$",
+                show: matches => this._gotoRinge(matches[1]),
             },{
-                url: "^/wettkampf/sprung/$",
-                show: matches => this._gotoSprung(),
+                url: "^/wettkampf/sprung/(.*)$",
+                show: matches => this._gotoSprung(matches[1]),
             },{
-                url: "^/wettkampf/barren/$",
-                show: matches => this._gotoBarren(),
+                url: "^/wettkampf/barren/(.*)$",
+                show: matches => this._gotoBarren(matches[1]),
             },{
-                url: "^/wettkampf/reck/$",
-                show: matches => this._gotoReck(),
+                url: "^/wettkampf/reck/(.*)$",
+                show: matches => this._gotoReck(matches[1]),
             },{
-                url: "^/wettkampf/ergebnis/$",
-                show: matches => this._gotoErgebnis(),
+                url: "^/wettkampf/ergebnis/(.*)$",
+                show: matches => this._gotoErgebnis(matches[1]),
             },{
                 url: "^/turner$",
                 show: matches => this._gotoTurner_hinzufuegen(),
@@ -143,12 +143,12 @@ class App {
     }
 
    
-    async _gotoBoden() {
+    async _gotoBoden(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Boden} = await import("./page-list/boden.js");
 
-            let page = new Boden(this);
+            let page = new Boden(this, wettkampfID);
             await page.init();
             this._showPage(page, "boden");
         } catch (ex) {
@@ -156,72 +156,72 @@ class App {
         }
     }
 
-    async _gotoPferd() {
+    async _gotoPferd(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Pferd} = await import("./page-list/pferd.js");
 
-            let page = new Pferd(this);
+            let page = new Pferd(this, wettkampfID);
             await page.init();
             this._showPage(page, "pferd");
         } catch (ex) {
             this._showException(ex);
         }
     }
-    async _gotoRinge() {
+    async _gotoRinge(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Ringe} = await import("./page-list/ringe.js");
 
-            let page = new Ringe(this);
+            let page = new Ringe(this, wettkampfID);
             await page.init();
             this._showPage(page, "ringe");
         } catch (ex) {
             this._showException(ex);
         }
     }
-    async _gotoSprung() {
+    async _gotoSprung(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Sprung} = await import("./page-list/sprung.js");
 
-            let page = new Sprung(this);
+            let page = new Sprung(this, wettkampfID);
             await page.init();
             this._showPage(page, "sprung");
         } catch (ex) {
             this._showException(ex);
         }
     }
-    async _gotoBarren() {
+    async _gotoBarren(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Barren} = await import("./page-list/barren.js");
 
-            let page = new Barren(this);
+            let page = new Barren(this, wettkampfID);
             await page.init();
             this._showPage(page, "barren");
         } catch (ex) {
             this._showException(ex);
         }
     }
-    async _gotoReck() {
+    async _gotoReck(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Reck} = await import("./page-list/reck.js");
 
-            let page = new Reck(this);
+            let page = new Reck(this, wettkampfID);
             await page.init();
             this._showPage(page, "reck");
         } catch (ex) {
             this._showException(ex);
         }
     }
-    async _gotoErgebnis() {
+    async _gotoErgebnis(wettkampfID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Ergebnis} = await import("./page-list/ergebnis.js");
 
-            let page = new Ergebnis(this);
+            let page = new Ergebnis(this, wettkampfID);
             await page.init();
             this._showPage(page, "ergebnis");
         } catch (ex) {
