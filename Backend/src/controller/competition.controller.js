@@ -3,7 +3,7 @@ import RestifyError from "restify-errors";
 import CompetitionService from "../service/competition.service.js";
 
 /**
- * Http-Handler-Klasse für alle Webservice-Aufrufe rund um die Entität "gymnast"
+ * Http-Handler-Klasse für alle Webservice-Aufrufe rund um die Entität "Wettkämpfe"
  */
 
 export default class CompetitionController{
@@ -11,11 +11,11 @@ export default class CompetitionController{
         this._prefix = prefix;
         this._service = new CompetitionService();
 
-        // Collection: list of Compitions
+        // Collection: Liste der Wettkämpfe
         server.get(prefix, wrapHandler(this, this.search));
         server.post(prefix, wrapHandler(this, this.create));
 
-        // Ressource: Address (eine einzelne Adresse)
+        // Ressource: eine einzelner Wettkampf
         server.get(prefix + "/:id", wrapHandler(this, this.read));
         server.put(prefix + "/:id", wrapHandler(this, this.put));
         server.patch(prefix + "/:id", wrapHandler(this, this.patch));
@@ -24,8 +24,8 @@ export default class CompetitionController{
 
 
     /**
-     * HATEOAS of a single Entry
-     * @param {*} entity 
+     * HATEOAS Links eines Eintrags generieren
+     * @param {entity} entity übergibt entitiy für die HATEOAS Links generiert werden sollen
      */
     _insertHateoasLinks(entity){
         let url = `${this._prefix}/${entity._id}`;
@@ -42,11 +42,11 @@ export default class CompetitionController{
 
 
     /**
-     * Get /competition
-     * Search for competition
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * Get /competitions
+     * Alle Wettkämpfe bekommen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async search(req,res,next){
         let result = await this._service.search(req.query);
@@ -59,11 +59,11 @@ export default class CompetitionController{
 
 
     /**
-     * POST /competition
-     * Add competition
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * POST /competitions
+     * Einen Wettkampf anlegen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
     */
     async create(req, res, next){
        if(req.body.name && req.body.HomeTeamID &&req.body.AwayTeamID){
@@ -83,10 +83,11 @@ export default class CompetitionController{
     }
 
     /**
-     * Get single compition
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * GET /competitions
+     * Einen bestimmten Wettkampf bekommen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async read(req, res, next){
          let result = await this._service.read(req.params.id);
@@ -103,11 +104,11 @@ export default class CompetitionController{
 
     
     /**
-     * PUT /competition
-     * Change every attribute of competition
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * PUT /competitions
+     * Alle Attribute von einem Wettkampf überschreiben
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async patch(req,res,next){
         
@@ -122,11 +123,11 @@ export default class CompetitionController{
     }
 
     /**
-     * PATCH /competition
-     * Change single attributes of competition
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * PATCH /competitions
+     * Bestimmte Attribute von Wettkampf überschreiben
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      * @returns 
      */
     async put(req,res,next){
@@ -146,11 +147,11 @@ export default class CompetitionController{
     }
 
     /**
-     * DELETE /competition
-     * delete competition
-     * @param {*} res 
-     * @param {*} req 
-     * @param {*} next 
+     * DELETE /competitions
+     * Wettkampf löschen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async delete(req,res,next){
         if(await this._service.read(req.params.id)){

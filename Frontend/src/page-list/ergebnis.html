@@ -21,6 +21,7 @@
     main .actions {
         display: flex;
         justify-content: space-between;
+        background-color: #e0e0e0;
     }
 
     main .actions>div {
@@ -36,6 +37,7 @@
 
     main .actions>div:first-child {
         margin-left: 0;
+        background-color: #e0e0e0;
     }
 
     .contenedor {
@@ -49,6 +51,7 @@
         margin-left: 30px;
         display: block;
         height: 100%;
+        background-color: #e0e0e0;
     }
 
     .gesamtergebnis {
@@ -56,21 +59,60 @@
         display: flex;
         justify-content: space-around;
         float: right;
-        
+        background-color: #e0e0e0;
+
     }
 
-    .abstand{
-        margin-top: 11.5em;
+    .submit {
+        margin-top: 5em;
+        min-width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        float: right;
+    }
+
+    .hilfe {
+        margin-top: 3em;
+    }
+
+    #abstand {
+        margin-top: 6em;
     }
 </style>
 
 
 <!-- Hier sind die Felder in denen das Ergebnis angezeigt wird  -->
 <main>
+    <nav id="Wettkampf-Führung">
+        <ul>
+            <li data-page-name="boden">
+                <a href="#/wettkampf/boden/">Boden</a>
+            </li>
+            <li data-page-name="pferd">
+                <a href="#/wettkampf/pferd/">Pferd</a>
+            </li>
+            <li data-page-name="ringe">
+                <a href="#/wettkampf/ringe/">Ringe</a>
+            </li>
+            <li data-page-name="sprung">
+                <a href="#/wettkampf/sprung/">Sprung</a>
+            </li>
+            <li data-page-name="barren">
+                <a href="#/wettkampf/barren/">Barren</a>
+            </li>
+            <li data-page-name="reck">
+                <a href="#/wettkampf/reck/">Reck</a>
+            </li>
+            <li data-page-name="ergebnis">
+                <a href="#/wettkampf/ergebnis/">Ergebnis</a>
+            </li>
+        </ul>
+    </nav>
+
     <div>
-        <div class="">
+        <div >
             <div class="list">
-                <div>
+                <div class=" hilfe">
                     <div>
                         <input type="text" class="inp_team" placeholder="Teamname" value="" disabled="disabled">
                     </div>
@@ -83,7 +125,7 @@
                         <input type="text" class="text_ergebnis_gesamt11" disabled="disabled" value="">
                         <input type="text" class="text_ergebnis_gesamt12" disabled="disabled" value="">
                         <input type="text" class="text_ergebnis_gesamt13" disabled="disabled" value="">
-                        
+
                     </div>
                     <div class="contenedor" id="ueberschrife">
                         <p>Sprung</p>
@@ -99,9 +141,9 @@
                     </div>
                 </div>
 
-                <div class="abstand">
+                <div >
                     <div>
-                        <input type="text" class="inp_team2" placeholder="Teamname" value="" disabled="disabled">
+                        <input type="text" class="inp_team2" placeholder="Teamname" value="" disabled="disabled" id="abstand">
                     </div>
 
                     <div class="contenedor" id="ueberschrife">
@@ -113,7 +155,7 @@
                         <input type="text" class="text_ergebnis_gesamt21" disabled="disabled" value="">
                         <input type="text" class="text_ergebnis_gesamt22" disabled="disabled" value="">
                         <input type="text" class="text_ergebnis_gesamt23" disabled="disabled" value="">
-                        
+
                     </div>
                     <div class="contenedor" id="ueberschrife">
                         <p>Sprung</p>
@@ -127,11 +169,11 @@
                         <input type="text" class="text_ergebnis_gesamt26" disabled="disabled" value="">
                         <input type="text" class="text_ergebnis_gesamt27" disabled="disabled" value="">
                     </div>
-                    <div class="inp_team">
-                        <input type="submit" class="berechnen" value="Ergebnis anzeigen">
-                    </div>
                 </div>
             </div>
+        </div>
+        <div class="submit">
+            <input type="submit" class="fertig" value="Wettkampf abschließen">
         </div>
     </div>
 </main>

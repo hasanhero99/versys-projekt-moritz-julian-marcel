@@ -2,18 +2,18 @@ import { ObjectId } from "mongodb";
 import DatabaseFactory from "../database.js";
 
 /**
- * Fachliche Anwendungslogik für alles rund um Adressdatensätze.
+ * Datenbank einträge verwalten für Wettkämpfe
  */
 export default class CompetitionService {
-    /**
-     * Konstruktor
-     */
+    
     constructor() {
         this._competitions = DatabaseFactory.database.collection("competition");
     }
 
     /**
-     * search for gymnasts
+     * Wettkampf suchen
+     * @param {query} query attribut der Anfrage zum finden der Einträge
+     * @returns sortiert alle Wettkämpfe
      */
     async search(query) {
         let cursor = this._competitions.find(query, {
@@ -26,7 +26,9 @@ export default class CompetitionService {
     }
 
     /**
-     * Adresse anlegen
+     * legt Wettkampf an
+     * @param {competition} competition enthält Information des Clients zur Anlegung des Wettkampfes  
+     * @returns die neue Wettkampf Entität
      */
     async create(competition) {
         competition = competition || {};
@@ -45,7 +47,9 @@ export default class CompetitionService {
     }
 
     /**
-     * Einzelne Adresse anhand ihrer ID lesen
+     * 
+     * @param {*} id 
+     * @returns 
      */
     async read(id) {
         let result = await this._competitions.findOne({_id: new ObjectId(id)});

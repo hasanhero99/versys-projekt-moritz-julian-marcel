@@ -3,7 +3,7 @@ import RestifyError from "restify-errors";
 import GymnastService from "../service/gymnast.service.js";
 
 /**
- * Http-Handler-Klasse für alle Webservice-Aufrufe rund um die Entität "gymnast"
+ * Http-Handler-Klasse für alle Webservice-Aufrufe rund um die Entität "Turner"
  */
 
 export default class GymnastController{
@@ -11,11 +11,11 @@ export default class GymnastController{
         this._prefix = prefix;
         this._service = new GymnastService();
 
-        // Collection: Address (Liste von Adressen)
+         // Collection: Liste der Wettkämpfe
         server.get(prefix, wrapHandler(this, this.search));
         server.post(prefix, wrapHandler(this, this.create));
 
-        // Ressource: Address (eine einzelne Adresse)
+        // Ressource: eine einzelner Turner
         server.get(prefix + "/:id", wrapHandler(this, this.read));
         server.put(prefix + "/:id", wrapHandler(this, this.put));
         server.patch(prefix + "/:id", wrapHandler(this, this.patch));
@@ -24,8 +24,8 @@ export default class GymnastController{
 
 
     /**
-     * HATEOAS of a single Entry
-     * @param {*} entity 
+     * HATEOAS Links eines Eintrags generieren
+     * @param {entity} entity übergibt entitiy für die HATEOAS Links generiert werden sollen
      */
     _insertHateoasLinks(entity){
         let url = `${this._prefix}/${entity._id}`;
@@ -41,12 +41,12 @@ export default class GymnastController{
 
 
 
-    /**
-     * Get /gymnast
-     * Search for gymnast
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     /**
+     * Get /gymnasts
+     * Alle Turner bekommen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async search(req,res,next){
         let result = await this._service.search(req.query);
@@ -59,11 +59,11 @@ export default class GymnastController{
 
 
     /**
-     * POST /gymnast
-     * Add gymnast
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * POST /gymnasts
+     * Einen Turner anlegen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
     */
     async create(req, res, next){
         if(req.body.name && req.body.surname){
@@ -83,10 +83,11 @@ export default class GymnastController{
     }
 
     /**
-     * 
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * GET /gymnasts
+     * Einen bestimmten Turner bekommen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async read(req, res, next){
          let result = await this._service.read(req.params.id);
@@ -103,12 +104,11 @@ export default class GymnastController{
 
     
     /**
-     * PUT /gymnast
-     * PATCH /gymnast
-     * Change single attributes of gymnast
-     * @param {*} req 
-     * @param {*} res 
-     * @param {*} next 
+     * PUT /gymnasts
+     * Alle Attribute von einem Turner überschreiben
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async put(req,res,next){       
 
@@ -126,7 +126,14 @@ export default class GymnastController{
         return next();
     }
 
-    //patch
+    /**
+     * PATCH /gymnasts
+     * Bestimmte Attribute von Turner überschreiben
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
+     * @returns 
+     */
     async patch(req,res,next){
         let result = await this._service.update(req.params.id, req.body);
         if(result){
@@ -140,11 +147,11 @@ export default class GymnastController{
         
 
     /**
-     * DELETE /gymnast
-     * delete gymnast
-     * @param {*} res 
-     * @param {*} req 
-     * @param {*} next 
+     * DELETE /gymnasts
+     * Turner löschen
+     * @param {req} req Request des Clients
+     * @param {res} res Response des Servers
+     * @param {next} next wird genutzt um in nächsten Befehl zu springen
      */
     async delete(req,res,next){
         //delete gymnast

@@ -31,6 +31,10 @@ export default class Reck extends Page {
         let id = "627641952f029327f02f7f9a";
         this.load(id, templateElement);
         templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne(id));
+        let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
+        this.hide(competition, templateElement);
+        templateElement.querySelector(".fertig").addEventListener("click", () => this.next(location,id));
+
 
     }
     // Hier findet die berechnung bei Klicken auf den Button statt
@@ -79,7 +83,7 @@ export default class Reck extends Page {
 
     }
 
-    async load(id, templateElement){
+    async load(id, templateElement) {
 
         let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
 
@@ -96,7 +100,7 @@ export default class Reck extends Page {
         let gymnast_a3 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID3);
         let gymnast_a4 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID4);
 
-        
+
         let scoreDisciplineHome = competition.scoreHomeTeam.HorizontalBars.Scores;
         let scoreDisciplineAway = competition.scoreAwayTeam.HorizontalBars.Scores;
 
@@ -110,9 +114,9 @@ export default class Reck extends Page {
         templateElement.querySelector(".text_ergebnis22").value = scoreDisciplineAway.Score2;
         templateElement.querySelector(".text_ergebnis23").value = scoreDisciplineAway.Score3;
         templateElement.querySelector(".text_ergebnis24").value = scoreDisciplineAway.Score4;
-        templateElement.querySelector(".text_ergebnis_gesamt2").value =  await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
+        templateElement.querySelector(".text_ergebnis_gesamt2").value = await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
 
-        
+
         templateElement.querySelector(".inp_team").value = homeTeam.name;
         templateElement.querySelector(".inp_team2").value = awayTeam.name;
 
@@ -120,7 +124,7 @@ export default class Reck extends Page {
         templateElement.querySelector(".inp_eingabe12").value = (gymnast_h2.name + " " + gymnast_h2.surname);
         templateElement.querySelector(".inp_eingabe13").value = (gymnast_h3.name + " " + gymnast_h3.surname);
         templateElement.querySelector(".inp_eingabe14").value = (gymnast_h4.name + " " + gymnast_h4.surname);
-        
+
 
         templateElement.querySelector(".inp_eingabe21").value = (gymnast_a1.name + " " + gymnast_a1.surname);
         templateElement.querySelector(".inp_eingabe22").value = (gymnast_a2.name + " " + gymnast_a2.surname);
@@ -129,24 +133,70 @@ export default class Reck extends Page {
     }
 
 
-    async ergebnis(scores,help){
+    async ergebnis(scores, help) {
         let help2 = 0;
         let score = 0;
 
-        let scores1 = [scores.Score1,scores.Score2,scores.Score3,scores.Score4];
+        let scores1 = [scores.Score1, scores.Score2, scores.Score3, scores.Score4];
 
-         for(let index in scores1){                
-             if(parseFloat(scores1[index]) < help){
-                 help = parseFloat(scores1[index]);
-                 help2 = index;                
-             }            
+        for (let index in scores1) {
+            if (parseFloat(scores1[index]) < help) {
+                help = parseFloat(scores1[index]);
+                help2 = index;
+            }
         }
         scores1[help2] = 0.00;
 
-        for(let index2 in scores1){
-             score = score + parseFloat(scores1[index2]);
+        for (let index2 in scores1) {
+            score = score + parseFloat(scores1[index2]);
         }
 
         return parseFloat(score);
+    }
+    async hide(competition, templateElement) {
+        templateElement.querySelector(".hidden1").style.visibility = 'hidden';
+        templateElement.querySelector(".hidden2").style.visibility = 'hidden';
+        templateElement.querySelector(".hidden3").style.visibility = 'hidden';
+        templateElement.querySelector(".hidden4").style.visibility = 'hidden';
+
+        if (!competition.WinnerTeamID == "") {
+
+
+            templateElement.querySelector(".inp_auteam11").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_auteam12").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_auteam13").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_auteam14").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam11").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam12").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam13").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam14").style.visibility = 'hidden';
+
+            templateElement.querySelector(".inp_auteam21").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_auteam22").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_auteam23").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_auteam24").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam21").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam22").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam23").style.visibility = 'hidden';
+            templateElement.querySelector(".inp_abteam24").style.visibility = 'hidden';
+            templateElement.querySelector(".unterueberschrift1").style.visibility = 'hidden';
+            templateElement.querySelector(".unterueberschrift2").style.visibility = 'hidden';
+            templateElement.querySelector(".unterueberschrift3").style.visibility = 'hidden';
+            templateElement.querySelector(".unterueberschrift4").style.visibility = 'hidden';
+
+
+            templateElement.querySelector(".berechnen").style.display = 'none';
+            templateElement.querySelector(".fertig").style.display = 'none';
+
+
+
+        }
+    }
+    async next(location, id){
+        await this._app.backend.fetch("PATCH", "/competitions/" + id, {
+            body: { "WinnerTeamID": "beendet" }
+
+        })
+        location.hash = "#/wettkampf/ergebnis/";
     }
 };

@@ -31,6 +31,10 @@ export default class Barren extends Page {
         let id = "627641952f029327f02f7f9a";
         this.load(id, templateElement);
         templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne(id));
+        let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
+        this.hide(competition, templateElement);
+        templateElement.querySelector(".fertig").addEventListener("click", () => this.next(location,id));
+
         
         
         
@@ -151,5 +155,51 @@ export default class Barren extends Page {
         }
 
         return parseFloat(score);
+    }
+    async hide(competition,templateElement){
+        templateElement.querySelector(".hidden1").style.visibility = 'hidden';
+        templateElement.querySelector(".hidden2").style.visibility = 'hidden';
+        templateElement.querySelector(".hidden3").style.visibility = 'hidden';
+        templateElement.querySelector(".hidden4").style.visibility = 'hidden';
+
+        if(!competition.WinnerTeamID == ""){
+            
+            
+                templateElement.querySelector(".inp_auteam11").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_auteam12").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_auteam13").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_auteam14").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam11").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam12").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam13").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam14").style.visibility = 'hidden';
+    
+                templateElement.querySelector(".inp_auteam21").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_auteam22").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_auteam23").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_auteam24").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam21").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam22").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam23").style.visibility = 'hidden';
+                templateElement.querySelector(".inp_abteam24").style.visibility = 'hidden';
+                templateElement.querySelector(".unterueberschrift1").style.visibility = 'hidden';
+                templateElement.querySelector(".unterueberschrift2").style.visibility = 'hidden';
+                templateElement.querySelector(".unterueberschrift3").style.visibility = 'hidden';
+                templateElement.querySelector(".unterueberschrift4").style.visibility = 'hidden';
+                
+
+                templateElement.querySelector(".berechnen").style.display = 'none';
+                templateElement.querySelector(".fertig").style.display = 'none';
+
+
+
+            }
+    }
+    async next(location, id){
+        await this._app.backend.fetch("PATCH", "/competitions/" + id, {
+            body: { "WinnerTeamID": "beendet" }
+
+        })
+        location.hash = "#/wettkampf/ergebnis/";
     }
 };

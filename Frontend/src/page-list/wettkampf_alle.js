@@ -62,7 +62,12 @@ export default class alleWettkaempfe extends Page {
                     html = html.replace("$AwayTeam$", "" + teams[index2].name);
                 }
                 if (dataset.WinnerTeamID == teams[index2]._id){
+                    
                     html = html.replace("$WinnerTeam$", "" + teams[index2].name);
+                }
+                if(dataset.WinnerTeamID == ""){
+                    html = html.replace("$WinnerTeam$", "");
+                    
                 }
                 
             }

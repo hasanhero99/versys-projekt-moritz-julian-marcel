@@ -7,12 +7,12 @@
     }
 
     main .form>* {
-        display: block;
+
         width: 100%;
 
         border: 0px solid lightgrey;
         border-bottom-width: 1px;
-
+        
         padding: 0.5em 0 0.5em 0;
         margin-bottom: 1em;
     }
@@ -21,6 +21,7 @@
     main .actions {
         display: flex;
         justify-content: space-between;
+        background-color: #e0e0e0;
     }
 
     main .actions>div {
@@ -36,6 +37,7 @@
 
     main .actions>div:first-child {
         margin-left: 0;
+        background-color: #e0e0e0;
     }
 
     .contenedor {
@@ -45,114 +47,173 @@
         float: left;
     }
 
-    .inp_team {
+    main .inp_team {
         margin-left: 30px;
         display: block;
         height: 100%;
     }
 
-    .gesamtergebnis {
+    main .gesamtergebnis {
         width: 50%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         float: right;
+
+    }
+
+    main .abstand {
+        margin-top: 15em;
+        margin-bottom: 10em;
         
     }
 
-    .abstand{
-        margin-top: 11.5em;
+    main .action {
+        margin-top: 5em;
+        float: left;
     }
+
+    main .werte {
+        margin-top: 1em;
+    }
+
+    .submit {
+        margin-top: 5em;
+        min-width: 100%;
+        
+        display: flex;
+        justify-content: space-evenly;
+        float: right;
+    }
+
+
+
 </style>
 
 
 <!-- Hier ist sind die Eingabefelder vom Boden vorhanden  -->
 <main>
+    <nav id="Wettkampf-Führung">
+        <ul>
+            <li data-page-name="boden">
+                <a href="#/wettkampf/boden/">Boden</a>
+            </li>
+            <li data-page-name="pferd">
+                <a href="#/wettkampf/pferd/">Pferd</a>
+            </li>
+            <li data-page-name="ringe">
+                <a href="#/wettkampf/ringe/">Ringe</a>
+            </li>
+            <li data-page-name="sprung">
+                <a href="#/wettkampf/sprung/">Sprung</a>
+            </li>
+            <li data-page-name="barren">
+                <a href="#/wettkampf/barren/">Barren</a>
+            </li>
+            <li data-page-name="reck">
+                <a href="#/wettkampf/reck/">Reck</a>
+            </li>
+            <li data-page-name="ergebnis">
+                <a href="#/wettkampf/ergebnis/">Ergebnis</a>
+            </li>
+        </ul>
+    </nav>
     <div>
-        <div class="">
+        <div class="hintergrunf">
             <div class="list">
                 <div>
-                    <div>
-                        <input type="text" class="inp_team" placeholder="Teamname" value="" disabled="disabled">
+                    <div class=werte>
+                        <input type="text" class="inp_team"  value="" disabled="disabled">
                     </div>
                     <div class="contenedor" id="ueberschrife">
                         <p>Person</p>
-                        <p>Ausgang</p>
-                        <p>Abzug</p>
+                        <p class="unterueberschrift1">Ausgang</p>
+                        <p class="unterueberschrift2">Abzug</p>
                         <p>Wertung</p>
                     </div>
                     <div class="contenedor">
-                        <input type="text" class="inp_eingabe11" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam11" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam11" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe11"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam11"  min="0" value="0">
+                        <input type="number" class="inp_abteam11"  min="0" value="0">
                         <input type="text" class="text_ergebnis11" disabled="disabled" value="0">
                     </div>
                     <div class="contenedor" id="eingabe2">
-                        <input type="text" class="inp_eingabe12" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam12" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam12" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe12"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam12"  min="0" value="0">
+                        <input type="number" class="inp_abteam12"  min="0" value="0">
                         <input type="text" class="text_ergebnis12" disabled="disabled" value="0">
                     </div>
                     <div class="contenedor" id="eingabe3">
-                        <input type="text" class="inp_eingabe13" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam13" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam13" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe13"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam13"  min="0" value="0">
+                        <input type="number" class="inp_abteam13"  min="0" value="0">
                         <input type="text" class="text_ergebnis13" disabled="disabled" value="0">
                     </div>
                     <div class="contenedor" id="eingabe4">
-                        <input type="text" class="inp_eingabe14" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam14" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam14" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe14"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam14"  min="0" value="0">
+                        <input type="number" class="inp_abteam14"  min="0" value="0">
                         <input type="text" class="text_ergebnis14" disabled="disabled" value="0">
                     </div>
-                    <div class="gesamtergebnis">
+                    <div class="contenedor">
                         <input type="text" class="inp_eingabe_gesamt1" value="Gesamt" disabled="disabled">
+                        <input type="number" class="hidden1"  min="0" value="0">
+                        <input type="number" class="hidden2"  min="0" value="0">
                         <input type="text" class="text_ergebnis_gesamt1" disabled="disabled" value="">
                     </div>
                 </div>
 
                 <div class="abstand">
                     <div>
-                        <input type="text" class="inp_team2" placeholder="Teamname" value="" disabled="disabled">
+                        <input type="text" class="inp_team2"  value="" disabled="disabled">
                     </div>
                     <div class="contenedor" id="ueberschrife">
                         <p>Person</p>
-                        <p>Ausgang</p>
-                        <p>Abzug</p>
+                        <p class="unterueberschrift3">Ausgang</p>
+                        <p class="unterueberschrift4">Abzug</p>
                         <p>Wertung</p>
                     </div>
                     <div class="contenedor">
-                        <input type="text" class="inp_eingabe21" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam21" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam21" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe21"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam21"  min="0" value="0">
+                        <input type="number" class="inp_abteam21"  min="0" value="0">
                         <input type="text" class="text_ergebnis21" disabled="disabled" value="0">
                     </div>
                     <div class="contenedor" id="eingabe2">
-                        <input type="text" class="inp_eingabe22" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam22" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam22" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe22"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam22"  min="0" value="0">
+                        <input type="number" class="inp_abteam22"  min="0" value="0">
                         <input type="text" class="text_ergebnis22" disabled="disabled" value="0">
                     </div>
                     <div class="contenedor" id="eingabe3">
-                        <input type="text" class="inp_eingabe23" placeholder="Name" value="" disabled="disabled">
-                        <input type="number" class="inp_auteam23" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam23" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe23"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam23"  min="0" value="0">
+                        <input type="number" class="inp_abteam23"  min="0" value="0">
                         <input type="text" class="text_ergebnis23" disabled="disabled" value="0">
                     </div>
                     <div class="contenedor" id="eingabe4">
-                        <input type="text" class="inp_eingabe24" placeholder="Name" value="" disabled="disabled" >
-                        <input type="number" class="inp_auteam24" placeholder="" min="0" value="0">
-                        <input type="number" class="inp_abteam24" placeholder="" min="0" value="0">
+                        <input type="text" class="inp_eingabe24"  value="" disabled="disabled">
+                        <input type="number" class="inp_auteam24"  min="0" value="0">
+                        <input type="number" class="inp_abteam24"  min="0" value="0">
                         <input type="text" class="text_ergebnis24" disabled="disabled" value="0">
                     </div>
-                    <div class="gesamtergebnis">
+                    <div class="contenedor">
                         <input type="text" class="inp_eingabe_gesamt2" value="Gesamt" disabled="disabled">
+                        <input type="number" class="hidden3"  min="0" value="0">
+                        <input type="number" class="hidden4"  min="0" value="0">
                         <input type="text" class="text_ergebnis_gesamt2" disabled="disabled" value="">
                     </div>
                     <div class="inp_team">
-                        <input type="submit" class="berechnen" value="Berechnen">
+
                     </div>
                 </div>
+                <div class="submit">
+                    <input type="submit" class="berechnen" value="Ergebnis anzeigen">
+                    <input type="submit" class="fertig" value="Wettkampf abschließen">
+                </div>
             </div>
+
         </div>
     </div>
+    
+
 </main>

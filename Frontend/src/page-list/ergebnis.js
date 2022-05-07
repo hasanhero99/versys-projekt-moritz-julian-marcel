@@ -28,9 +28,11 @@ export default class Ergebnis extends Page {
         await super.init();
         this._title = "Ergebnis";
         let templateElement = this._mainElement.querySelector(".list");
-        //templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne());
+        let templateElement1 = this._mainElement.querySelector(".submit");
+        
 
         let id = "627641952f029327f02f7f9a";
+        templateElement1.querySelector(".fertig").addEventListener("click", () => this.speichern(competition,resultH,resultA,id));
 
 
         //Wettkampf holen
@@ -95,23 +97,14 @@ export default class Ergebnis extends Page {
         let resultA = parseFloat(floorA) + parseFloat(pommelhorseA) +parseFloat(ringsA) + parseFloat(vaultA) + parseFloat(parallelBarsA)+ parseFloat(horizontalBarsA);
         templateElement.querySelector(".text_ergebnis_gesamt27").value = resultA;
 
-
-        if(resultH > resultA){
-            await this._app.backend.fetch("PATCH", "/competitions/" + id,{
-                body: {
-                    "WinnerTeamID": competition.HomeTeamID
-                }
-            } );
-            
-
-        }else if(resultH < resultA){
-            await this._app.backend.fetch("PATCH", "/competitions/" + id,{
-                body: {
-                    "WinnerTeamID": competition.AwayTeamID
-                }
-            } );
-            
+        if(competition.WinnerTeamID){
+            templateElement1.querySelector(".fertig").style.display = 'none';
         }
+            
+
+        if(competition.WinnerTeamID == "beendet"){
+            this.speichern(competition,resultH,resultA,id);
+    }
 
     }
 
@@ -135,5 +128,25 @@ export default class Ergebnis extends Page {
         }
 
         return parseFloat(score);
+    }
+
+    async speichern(competition,resultH,resultA,id){
+        if(resultH > resultA){
+            await this._app.backend.fetch("PATCH", "/competitions/" + id,{
+                body: {
+                    "WinnerTeamID": competition.HomeTeamID
+                }
+            } );
+            
+
+        }else if(resultH < resultA){
+            await this._app.backend.fetch("PATCH", "/competitions/" + id,{
+                body: {
+                    "WinnerTeamID": competition.AwayTeamID
+                }
+            } );
+            
+        }
+        window.location.reload();
     }
 };
