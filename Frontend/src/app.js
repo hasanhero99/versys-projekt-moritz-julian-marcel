@@ -33,8 +33,8 @@ class App {
                 url: "^/teams/team_hinzufuegen/",
                 show: matches => this._gotoTeam_hinzufuegen(),
             },{
-                url: "^/teams/team_bearbeiten/",
-                show: matches => this._gotoTeam_bearbeiten(),
+                url: "^/teams/team_bearbeiten/(.*)$",
+                show: matches => this._gotoTeam_bearbeiten(matches[1]),
             },{
                 url: "^/teams/team_anzeigen/",
                 show: matches => this._gotoTeam_alle(),
@@ -294,12 +294,12 @@ class App {
         }
     }
 
-    async _gotoTeam_bearbeiten() {
+    async _gotoTeam_bearbeiten(teamID) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Teams_bearbeiten} = await import("./page-list/teams_bearbeiten.js");
 
-            let page = new Teams_bearbeiten(this);
+            let page = new Teams_bearbeiten(this, teamID);
             await page.init();
             this._showPage(page, "teams_bearbeiten");
         } catch (ex) {
