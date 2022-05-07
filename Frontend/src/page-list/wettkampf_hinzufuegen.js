@@ -39,7 +39,109 @@ export default class wettkampf_hinzufuegen extends Page {
 
         this._url = "/competitions"
 
-        this._dataset = { name: "", HomeTeamID: "", AwayTeamID: "", WinnerTeamID: "", scoreHomeTeam: {}, scoreAwayTeam: {} };
+        this._dataset = {
+            name: "", HomeTeamID: "", AwayTeamID: "", WinnerTeamID: "", scoreHomeTeam: {
+                "Floor": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "Pommelhorse": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "Rings": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "Vault": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "ParallelBars": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "HorizontalBars": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                }
+
+            }, scoreAwayTeam: {
+                "Floor": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "Pommelhorse": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "Rings": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "Vault": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "ParallelBars": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                },
+                "HorizontalBars": {
+                    "Scores": {
+                        "Score1": 0.0,
+                        "Score2": 0.0,
+                        "Score3": 0.0,
+                        "Score4": 0.0
+                    }
+                }
+            }
+        };
+
 
         // Eingabefelder zur späteren Verwendung merken
         this.name = this._mainElement.querySelector("input.name");
@@ -59,7 +161,7 @@ export default class wettkampf_hinzufuegen extends Page {
 
         //Erstellen des Heimteam
 
-        for (let index in result){
+        for (let index in result) {
             var option = document.createElement("option");
             option.value = result[index]._id;
             option.text = result[index].name;
@@ -74,7 +176,7 @@ export default class wettkampf_hinzufuegen extends Page {
 
         //Erstellen des Auswärtsteam
 
-        for (let index in result){
+        for (let index in result) {
             var option2 = document.createElement("option");
             option2.value = result[index]._id;
             option2.text = result[index].name;
