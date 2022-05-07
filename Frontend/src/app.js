@@ -25,10 +25,10 @@ class App {
         this.router = new Router([
             {
                 url: "^/$",
-                show: () => this._gotoTeam()
+                show: () => this._gotoTeam_hinzufuegen()
             },{
                 url: "^/teams$",
-                show: matches => this._gotoTeam(),
+                show: matches => this._gotoTeam_hinzufuegen(),
             },{
                 url: "^/teams/team_hinzufuegen/",
                 show: matches => this._gotoTeam_hinzufuegen(),
@@ -40,10 +40,13 @@ class App {
                 show: matches => this._gotoTeam_alle(),
             },{
                 url: "^/wettkampf/$",
-                show: matches => this._gotoErgebnis(),
+                show: matches => this._gotoWettkampf_hinzufuegen(),
             },{
                 url: "^/wettkampf/alleWettkaempfe/$",
                 show: matches => this._gotoAlleWettkaempfe(),
+            },{
+                url: "^/wettkampf/wettkampf_hinzufuegen/$",
+                show: matches => this._gotoWettkampf_hinzufuegen(),
             },{
                 url: "^/wettkampf/boden/$",
                 show: matches => this._gotoBoden(),
@@ -67,19 +70,19 @@ class App {
                 show: matches => this._gotoErgebnis(),
             },{
                 url: "^/turner$",
-                show: matches => this._gotoBoden(),
+                show: matches => this._gotoTurner_hinzufuegen(),
             },{
                 url: "^/turner/turner_hinzufuegen/",
                 show: matches => this._gotoTurner_hinzufuegen(),
             },{
-                url: "^/turner/turner_bearbeiten/",
-                show: matches => this._gotoTurner_bearbeiten(),
+                url: "^/turner/turner_bearbeiten/(.*)$",
+                show: matches => this._gotoTurner_bearbeiten(matches[1]),
             },{
                 url: "^/turner/turner_anzeigen/",
                 show: matches => this._gotoTurner_alle(),
             },{
                 url: ".*",
-                show: () => this._gotoTeam()
+                show: () => this._gotoTeam_hinzufuegen()
             },
         ]);
 
@@ -113,18 +116,7 @@ class App {
     /**
      * Übersichtsseite anzeigen. Wird vom Single Page Router aufgerufen.
      */
-    async _gotoTeam() {
-        try {
-            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
-            let {default: Teams} = await import("./page-list/teams.js");
 
-            let page = new Teams(this);
-            await page.init();
-            this._showPage(page, "teams");
-        } catch (ex) {
-            this._showException(ex);
-        }
-    }
     async _gotoAlleWettkaempfe() {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
@@ -137,8 +129,20 @@ class App {
             this._showException(ex);
         }
     }
+    async  _gotoWettkampf_hinzufuegen() {
+        try {
+            // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
+            let {default: wettkampf_hinzufuegen} = await import("./page-list/wettkampf_hinzufuegen.js");
 
-    
+            let page = new wettkampf_hinzufuegen(this);
+            await page.init();
+            this._showPage(page, "wettkampf_hinzufuegen");
+        } catch (ex) {
+            this._showException(ex);
+        }
+    }
+
+   
     async _gotoBoden() {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
@@ -238,12 +242,12 @@ class App {
         }
     }
 
-    async _gotoTurner_bearbeiten() {
+    async _gotoTurner_bearbeiten(id) {
         try {
             // Dynamischer Import, vgl. https://javascript.info/modules-dynamic-imports
             let {default: Turner_bearbeiten} = await import("./page-list/turner_bearbeiten.js");
 
-            let page = new Turner_bearbeiten(this);
+            let page = new Turner_bearbeiten(this, id);
             await page.init();
             this._showPage(page, "turner_bearbeiten");
         } catch (ex) {

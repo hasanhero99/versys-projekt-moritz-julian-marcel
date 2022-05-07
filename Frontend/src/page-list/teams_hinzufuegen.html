@@ -1,30 +1,20 @@
 <!-- Stylesheet der Seite -->
 <style>
-    /* LISTENEINTRÄGE */
-    main ol {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+    /* FORMULARFELDER */
+    main {
+        background-color: white;
+        padding: 1em;
     }
 
-    main li {
-        margin: 0;
-        padding: 1em;
-        padding-bottom: 0.5em;
-
-        background-color: white;
-        transition: background-color 0.5s;
+    main .form>* {
+        display: block;
+        width: 100%;
 
         border: 0px solid lightgrey;
         border-bottom-width: 1px;
-    }
 
-    main li:hover {
-        background-color: #fafafa;
-    }
-
-    main .name {
-        font-size: 150%;
+        padding: 0.5em 0 0.5em 0;
+        margin-bottom: 1em;
     }
 
     /* AKTIONSBUTTONS */
@@ -33,7 +23,7 @@
         justify-content: space-between;
     }
 
-    main .actions > div {
+    main .actions>div {
         padding: 0.5em;
         margin: 0.5em;
 
@@ -44,23 +34,98 @@
         text-align: center;
     }
 
-    main .actions > div:first-child {
+    main .actions>div:first-child {
         margin-left: 0;
     }
 
-    main .actions > div:last-child {
+    .contenedor {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        float: left;
+    }
+
+    .inp_team {
+        margin-left: 30px;
+        display: block;
+        height: 100%;
+    }
+
+    .gesamtergebnis {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        float: right;
+        
+    }
+
+    .abstand{
+        margin-top: 7.5em;
+    }
+
+     /* AKTIONSBUTTONS */
+     main .actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main .actions>div {
+        padding: 0.5em;
+        margin: 0.5em;
+
+        background-color: #e0e0e0;
+        transition: background-color 0.5s;
+
+        flex: 1;
+        text-align: center;
+    }
+
+    main .actions>div:first-child {
+        margin-left: 0;
+    }
+
+    main .actions>div:last-child {
         margin-right: 0;
     }
 
-    main .actions > div:hover {
+    main .actions>div:hover {
         background-color: #f0f0f0;
         cursor: pointer;
     }
 </style>
 
-<!-- Inhalt der Seite -->
+
+<!-- Hier sind die Felder in denen das Ergebnis angezeigt wird  -->
 <main>
-    <ol>
-       <li>Teams hinzufügen</li> 
-    </ol>
+    <div>
+        <div class="">
+            <div class="list">
+                <div>
+                    <div class="contenedor inp_team" id="ueberschrife">
+                        <p>Teamname</p>
+                    </div>
+                    <div>
+                        <input type="text" class="inp_team" placeholder="Teamname" value="">
+                    </div>
+                    <div class="contenedor" id="ueberschrife">
+                        <p>Teammitglied 1</p>
+                        <p>Teammitglied 2</p>
+                        <p>Teammitglied 3</p>
+                        <p>Teammitglied 4</p>
+                    </div>
+                    <div class="contenedor">
+                        <div id="container1"></div>
+                        <div id="container2"></div>
+                        <div id="container3"></div>
+                        <div id="container4"></div>
+                    </div>
+                    <div class="actions">
+                        <div class="action save">
+                            <a>💾</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>

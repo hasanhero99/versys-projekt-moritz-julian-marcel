@@ -62,6 +62,9 @@ export default class Turner_alle extends Page {
             let liElement = dummyElement.firstElementChild;
             liElement.remove();
             olElement.appendChild(liElement);
+
+            console.log(dataset._id);
+            liElement.querySelector(".action.edit").addEventListener("click", () => location.hash = `#/turner/turner_bearbeiten/${dataset._id}`);
             
         }
     }
