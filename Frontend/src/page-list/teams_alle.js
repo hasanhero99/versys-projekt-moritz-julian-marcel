@@ -81,6 +81,8 @@ export default class Teams_alle extends Page {
             let liElement = dummyElement.firstElementChild;
             liElement.remove();
             olElement.appendChild(liElement);
+
+            liElement.querySelector(".action.edit").addEventListener("click", () => location.hash = `#/teams/team_bearbeiten/${dataset._id}`);
             
         }
     }

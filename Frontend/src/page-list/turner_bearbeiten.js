@@ -43,20 +43,14 @@ export default class Turner_bearbeiten extends Page {
         // HTML-Inhalt nachladen
         await super.init();
 
-        console.log("Hi, bin grade im init der turner_bearbeiten Datei")
-        console.log(this._editGymnastID)
-
 
         if(this._editGymnastID){
             this._url = `/gymnasts/${this._editGymnastID}`;
             this._dataset = await this._app.backend.fetch("GET", this._url);
-            
-            console.log("Habe ne fetch Anfrage gestellt")
 
 
             this._title = `${this._dataset.name} ${this._dataset.surname}`;
         }else{
-            console.log("Hello")
             this._url = `/gymnasts`;
             this._title = "Turner hinzufügen";
         }
@@ -66,7 +60,7 @@ export default class Turner_bearbeiten extends Page {
         html  = html.replace("$LAST_NAME$", this._dataset.surname);
         this._mainElement.innerHTML = html;
 
-        let saveButton = this._mainElement.querySelector(".action.save")
+        let saveButton = this._mainElement.querySelector(".action.save");
         saveButton.addEventListener("click", () => this._saveAndExit());
 
         this._nameInput = this._mainElement.querySelector("input.first_name");
