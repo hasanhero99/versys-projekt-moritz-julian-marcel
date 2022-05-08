@@ -111,6 +111,16 @@ export default class Ergebnis extends Page {
             this.speichern(competition,resultH,resultA,id);
     } 
 
+    //Registerkarten anklickbar machen
+        let buttonPferd = this._mainElement.querySelector(".navigation");
+
+        buttonPferd.querySelector(".navBoden").addEventListener("click", () => location.hash = `#/wettkampf/boden/${id}`);
+        buttonPferd.querySelector(".navRinge").addEventListener("click", () => location.hash = `#/wettkampf/ringe/${id}`);
+        buttonPferd.querySelector(".navSprung").addEventListener("click", () => location.hash = `#/wettkampf/sprung/${id}`);
+        buttonPferd.querySelector(".navBarren").addEventListener("click", () => location.hash = `#/wettkampf/barren/${id}`);
+        buttonPferd.querySelector(".navReck").addEventListener("click", () => location.hash = `#/wettkampf/reck/${id}`);
+        buttonPferd.querySelector(".navPferd").addEventListener("click", () => location.hash = `#/wettkampf/pferd/${id}`);
+
     }
 
 

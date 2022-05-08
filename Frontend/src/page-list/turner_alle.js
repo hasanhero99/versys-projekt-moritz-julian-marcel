@@ -65,7 +65,25 @@ export default class Turner_alle extends Page {
 
             console.log(dataset._id);
             liElement.querySelector(".action.edit").addEventListener("click", () => location.hash = `#/turner/turner_bearbeiten/${dataset._id}`);
+            liElement.querySelector(".action.delete").addEventListener("click", () => this._delete(dataset._id));
             
         }
+    }
+
+    async _delete(id){
+        
+
+    
+
+        // Datensatz löschen
+        try {
+            await this._app.backend.fetch("DELETE", `/gymnasts/${id}`);
+            
+        } catch (ex) {
+            window.location.reload();
+            return;
+        }
+
+    
     }
 };

@@ -60,11 +60,24 @@
     .action.edit {
         cursor: pointer;
         display: inline-block;
+        margin-right: 20px;
+
+    }
+
+    .action.delete {
+        cursor: pointer;
+        display: inline-block;
+        
     }
 
     .list-entry{
         display: flex;
         justify-content: space-between;
+    }
+
+    .actionButtons{
+        display: flex;
+        justify-content: end;
     }
 
 </style>
@@ -85,8 +98,13 @@
                 $LAST_NAME$, $FIRST_NAME$
             </div>
 
-            <div class="action edit">
-                <a>🖊️</a>
+            <div class = "actionButtons">
+                <div class="action edit">
+                    <a>🖊️</a>
+                </div>
+                <div class="action delete">
+                    <a>🗑️</a>
+                </div>
             </div>
         </li>
     </ol>
