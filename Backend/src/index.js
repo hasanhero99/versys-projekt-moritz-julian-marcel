@@ -88,7 +88,6 @@ const openApiEnforcer = await OpenApiEnforcer(openApiFile, {
 server.use(OpenApiEnforcerMiddleware(openApiEnforcer));
 
 // HTTP-Handler-Funktionen registrieren
-//// TODO: Weitere Controller-Klassen hinzufügen ////
 new RootController(server, "/", openApiFile);
 new GymnastController(server, "/gymnasts");
 new TeamController(server, "/teams");
@@ -96,10 +95,9 @@ new CompetitionController(server, "/competitions");
 
 // Server tatsächlich starten
 server.listen(config.port, config.host, function() {
-    //// TODO: Konsolenausgabe anpassen (Name des Services usw.) ////
     console.log();
     console.log("=============");
-    console.log("MyApp-Server");
+    console.log("Wettkampf Server");
     console.log("=============");
     console.log();
     console.log("Ausführung mit folgender Konfiguration:");
