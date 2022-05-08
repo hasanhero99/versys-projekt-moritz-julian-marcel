@@ -66,7 +66,6 @@ export default class teams_hinzufuegen extends Page {
         select4.id = "person4";
 
         //Erstellen des erste Person
-
         for (let index in result){
             var option = document.createElement("option");
             option.value = result[index]._id;
@@ -118,6 +117,7 @@ export default class teams_hinzufuegen extends Page {
         this._mainElement.querySelector("#container4").appendChild(label4).appendChild(select4);
     }
 
+    //Speichert erstelltes Team
     async _saveAndExit() {
         // Eingegebene Werte prüfen
         this._dataset.name = this.name.value.trim();

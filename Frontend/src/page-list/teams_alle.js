@@ -54,6 +54,7 @@ export default class Teams_alle extends Page {
         templateElement.remove();
         
 
+        //Liste der Teams erzeugen
         for(let index in result){
             // Platzhalter ersetzen
             let dataset = result[index];
@@ -75,11 +76,13 @@ export default class Teams_alle extends Page {
                 
             }
 
+            //Noch vorhandene $ID$ werden ersetzt
             html = html.replace("$ID1$", "Turner 1 ist nicht mehr eingetragen");
             html = html.replace("$ID2$", "Turner 2 ist nicht mehr eingetragen");
             html = html.replace("$ID3$", "Turner 3 ist nicht mehr eingetragen");
             html = html.replace("$ID4$", "Turner 4 ist nicht mehr eingetragen");
 
+            //Teamnamen anzeigen
             html = html.replace("$NAME$", dataset.name);
 
             // Element in die Liste einfügen
@@ -89,17 +92,16 @@ export default class Teams_alle extends Page {
             liElement.remove();
             olElement.appendChild(liElement);
 
+            //Aktion Buttons zum Bearbeiten und Löschen generieren
             liElement.querySelector(".action.edit").addEventListener("click", () => location.hash = `#/teams/team_bearbeiten/${dataset._id}`);
             liElement.querySelector(".action.delete").addEventListener("click", () => this._delete(dataset._id));
         }
     }
 
     async _delete(id){
-        
-
     
 
-        // Datensatz löschen
+        // Datensatz löschen und Seite neuladen
         try {
             await this._app.backend.fetch("DELETE", `/teams/${id}`);
             

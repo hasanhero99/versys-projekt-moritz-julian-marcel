@@ -50,6 +50,7 @@ export default class alleWettkaempfe extends Page {
         templateElement.remove();
         
 
+        //Erzeugt Liste aller Wettkaempfe
         for(let index in competitions){
             // Platzhalter ersetzen
             let dataset = competitions[index];
@@ -93,6 +94,7 @@ export default class alleWettkaempfe extends Page {
             liElement.remove();
             olElement.appendChild(liElement);
 
+            //Erzeugen des "Anzeige-Buttons"
             liElement.querySelector(".buttonLink").addEventListener("click", () => location.hash = `#/wettkampf/boden/${dataset._id}`);
             
         }

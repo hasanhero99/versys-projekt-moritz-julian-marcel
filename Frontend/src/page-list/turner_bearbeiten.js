@@ -55,11 +55,13 @@ export default class Turner_bearbeiten extends Page {
             this._title = "Turner hinzufügen";
         }
 
+        //Zu bearbeitender Turner wird angezeigt
         let html = this._mainElement.innerHTML;
         html  = html.replace("$FIRST_NAME$", this._dataset.name);
         html  = html.replace("$LAST_NAME$", this._dataset.surname);
         this._mainElement.innerHTML = html;
 
+        //Speicherbutton wird generiert
         let saveButton = this._mainElement.querySelector(".action.save");
         saveButton.addEventListener("click", () => this._saveAndExit());
 
@@ -67,6 +69,7 @@ export default class Turner_bearbeiten extends Page {
         this._surnameInput  = this._mainElement.querySelector("input.last_name");
     }
 
+    //Sichert vorgenommene Änderungen am Turner
     async _saveAndExit() {
         // Eingegebene Werte prüfen
         this._dataset._id = this._editGymnastID;

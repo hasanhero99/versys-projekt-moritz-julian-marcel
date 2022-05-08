@@ -56,10 +56,10 @@ export default class Teams_bearbeiten extends Page {
         }
 
 
-//<--------------------------------------------------------------------------------------->
-//<---------------------------------------------------------------------------------------> 
-        this.name = this._mainElement.querySelector("input.inp_team");  
-        //this.name = this._dataset.name;       
+        //Listenmenü erzeugen
+        //<-------------------------------------------------------------->
+
+        this.name = this._mainElement.querySelector("input.inp_team");      
         let result = await this._app.backend.fetch("GET", "/gymnasts");
         
         var select = document.createElement("select");
@@ -77,8 +77,8 @@ export default class Teams_bearbeiten extends Page {
         var select4 = document.createElement("select");
         select4.name = "person4";
         select4.id = "person4";
-    //Erstellen des erste Person
-
+        
+        //Erstellen des erste Person
         for (let index in result){
             var option = document.createElement("option");
             option.value = result[index]._id;
@@ -128,11 +128,9 @@ export default class Teams_bearbeiten extends Page {
         }
         var label4 = document.createElement("label");
         this._mainElement.querySelector("#container4").appendChild(label4).appendChild(select4);
+        //<--------------------------------------------------------------------------------------->
 
-
-//<--------------------------------------------------------------------------------------->
-//<---------------------------------------------------------------------------------------->
-
+        //Speicherbutton generieren
         let saveButton = this._mainElement.querySelector(".action.save");
         saveButton.addEventListener("click", () => this._saveAndExit());
 
@@ -142,10 +140,9 @@ export default class Teams_bearbeiten extends Page {
         select3.value = this._dataset.gymnastID3;
         select4.value = this._dataset.gymnastID4;
 
-        console.log(select.value);
-
     }
 
+    //Sichert eingetragene Turner, sowie den Teamnamen
     async _saveAndExit() {
         // Eingegebene Werte prüfen
         this._dataset._id = this._editTeamID;

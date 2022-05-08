@@ -50,8 +50,6 @@ export default class Ringe extends Page {
         button.querySelector(".navReck").addEventListener("click", () => location.hash = `#/wettkampf/reck/${id}`);
         button.querySelector(".navErgebnis").addEventListener("click", () => location.hash = `#/wettkampf/ergebnis/${id}`);
         
-        
-        
     }
     // Hier findet die berechnung bei Klicken auf den Button statt
     async berechne(id) {

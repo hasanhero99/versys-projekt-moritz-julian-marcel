@@ -63,19 +63,17 @@ export default class Turner_alle extends Page {
             liElement.remove();
             olElement.appendChild(liElement);
 
-            console.log(dataset._id);
+            //Erzeugt "Loesch- und Bearbeitungsbutton"
             liElement.querySelector(".action.edit").addEventListener("click", () => location.hash = `#/turner/turner_bearbeiten/${dataset._id}`);
             liElement.querySelector(".action.delete").addEventListener("click", () => this._delete(dataset._id));
             
         }
     }
 
+
+    //Loescht angelegten Turner
     async _delete(id){
-        
-
-    
-
-        // Datensatz löschen
+      // Datensatz löschen
         try {
             await this._app.backend.fetch("DELETE", `/gymnasts/${id}`);
             
@@ -83,7 +81,5 @@ export default class Turner_alle extends Page {
             window.location.reload();
             return;
         }
-
-    
     }
 };

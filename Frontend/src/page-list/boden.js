@@ -39,7 +39,7 @@ export default class Boden extends Page {
         let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
         templateElement.querySelector(".berechnen").addEventListener("click", () => this.berechne(id));
         templateElement.querySelector(".fertig").addEventListener("click", () => this.next(location,id));
-
+        
         this.hide(competition, templateElement);
 
         let button = this._mainElement.querySelector(".navigation");
@@ -49,8 +49,6 @@ export default class Boden extends Page {
         button.querySelector(".navBarren").addEventListener("click", () => location.hash = `#/wettkampf/barren/${id}`);
         button.querySelector(".navReck").addEventListener("click", () => location.hash = `#/wettkampf/reck/${id}`);
         button.querySelector(".navErgebnis").addEventListener("click", () => location.hash = `#/wettkampf/ergebnis/${id}`);
-
-
     }
 
 
@@ -135,6 +133,7 @@ export default class Boden extends Page {
         templateElement.querySelector(".text_ergebnis_gesamt2").value = await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
 
 
+        console.log(homeTeam.name);
         templateElement.querySelector(".inp_team").value = homeTeam.name;
         templateElement.querySelector(".inp_team2").value = awayTeam.name;
 

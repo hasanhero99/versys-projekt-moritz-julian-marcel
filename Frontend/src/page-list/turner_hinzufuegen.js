@@ -34,8 +34,10 @@ export default class Turner_hinzufuegen extends Page {
 
         this._title = "Turner hinzufügen";
 
+        //Speicherbutton erzeugen
         let saveButton = this._mainElement.querySelector(".action.save");
         saveButton.addEventListener("click", () => this._saveAndExit());
+
         this._url = "/gymnasts"
 
         this._dataset = { name: "", surename: "" };
@@ -47,6 +49,7 @@ export default class Turner_hinzufuegen extends Page {
 
     }
 
+    //Speichert Turner
     async _saveAndExit() {
         // Eingegebene Werte prüfen
         this._dataset.name = this._firstNameInput.value.trim();

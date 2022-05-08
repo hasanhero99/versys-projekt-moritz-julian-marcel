@@ -191,6 +191,8 @@ export default class wettkampf_hinzufuegen extends Page {
 
     }
 
+
+    //Speichert Wettkampf
     async _saveAndExit() {
         let competitionID;
         let competitionResponse;
