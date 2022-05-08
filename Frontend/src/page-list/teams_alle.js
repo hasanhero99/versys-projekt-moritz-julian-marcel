@@ -83,7 +83,24 @@ export default class Teams_alle extends Page {
             olElement.appendChild(liElement);
 
             liElement.querySelector(".action.edit").addEventListener("click", () => location.hash = `#/teams/team_bearbeiten/${dataset._id}`);
-            
+            liElement.querySelector(".action.delete").addEventListener("click", () => this._delete(dataset._id));
         }
+    }
+
+    async _delete(id){
+        
+
+    
+
+        // Datensatz löschen
+        try {
+            await this._app.backend.fetch("DELETE", `/teams/${id}`);
+            
+        } catch (ex) {
+            window.location.reload();
+            return;
+        }
+
+    
     }
 };

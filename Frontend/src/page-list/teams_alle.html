@@ -27,20 +27,40 @@
         font-size: 150%;
     }    
 
-    .editHolder{
+    .list-entry{
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+    .editHolderColumn{
         display: flex;
         flex-direction: column;
         justify-content: center;
         
     }
+    .editHolderRow{
+        display: flex;
+        justify-content: end;
+        
+    }
     .action.edit {
         cursor: pointer;
         display: inline-block;
+        margin-right: 20px;
     }
-    .list-entry{
-        display: flex;
-        justify-content: space-between;
+    .action.delete {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 10px;
+        
     }
+    
+
+
+    
+
+
 </style>
 
 <!-- Inhalt der Seite -->
@@ -63,9 +83,14 @@
                 <div>$ID4$</div>
             </div>
 
-            <div class = "editHolder">
-                <div class="action edit">
-                    <a>🖊️</a>
+            <div class = "editHolderColumn">
+                <div class = "editHolderRow">
+                    <div class="action edit">
+                        <a>🖊️</a>
+                    </div>
+                    <div class="action delete">
+                        <a>🗑️</a>
+                    </div>
                 </div>
             </div>
         </li>
