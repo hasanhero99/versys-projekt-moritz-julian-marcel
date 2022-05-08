@@ -78,7 +78,7 @@ export default class Teams_bearbeiten extends Page {
         select4.name = "person4";
         select4.id = "person4";
         
-        //Erstellen des erste Person
+        //Erstellen der ersten Person
         for (let index in result){
             var option = document.createElement("option");
             option.value = result[index]._id;
@@ -90,7 +90,7 @@ export default class Teams_bearbeiten extends Page {
         var label = document.createElement("label");
         this._mainElement.querySelector("#container1").appendChild(label).appendChild(select);
         
-        //Erstellen des zweite Person
+        //Erstellen der zweiten Person
         for (let index2 in result){
             var option2 = document.createElement("option");
             option2.value = result[index2]._id;
@@ -103,7 +103,7 @@ export default class Teams_bearbeiten extends Page {
         var label2 = document.createElement("label");
         this._mainElement.querySelector("#container2").appendChild(label2).appendChild(select2);
 
-        //Erstellen des dritte Person
+        //Erstellen der dritten Person
 
         for (let index3 in result){
             var option3 = document.createElement("option");
@@ -116,7 +116,7 @@ export default class Teams_bearbeiten extends Page {
         var label3 = document.createElement("label");
         this._mainElement.querySelector("#container3").appendChild(label3).appendChild(select3);
 
-        //Erstellen des vierte Person
+        //Erstellen der vierten Person
 
         for (let index4 in result){
             var option4 = document.createElement("option");
