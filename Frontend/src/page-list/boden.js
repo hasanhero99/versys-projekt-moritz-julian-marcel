@@ -133,7 +133,6 @@ export default class Boden extends Page {
         templateElement.querySelector(".text_ergebnis_gesamt2").value = await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
 
 
-        console.log(homeTeam.name);
         templateElement.querySelector(".inp_team").value = homeTeam.name;
         templateElement.querySelector(".inp_team2").value = awayTeam.name;
 
