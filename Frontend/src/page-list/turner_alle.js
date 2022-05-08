@@ -75,6 +75,25 @@ export default class Turner_alle extends Page {
     async _delete(id){
       // Datensatz löschen
         try {
+            let teamSearch = await this._app.backend.fetch("GET", `/teams`);
+
+            for(let index in teamSearch){
+                // Platzhalter ersetzen
+                let dataset = teamSearch[index];
+                
+                if (dataset.gymnastID1 == id){
+                    await this._app.backend.fetch("PATCH", `/teams/${dataset._id}`, {body: {gymnastID1: ""}});
+                }
+                if (dataset.gymnastID2 == id){
+                    await this._app.backend.fetch("PATCH", `/teams/${dataset._id}`, {body: {gymnastID2: ""}});
+                }
+                if (dataset.gymnastID3 == id){
+                    await this._app.backend.fetch("PATCH", `/teams/${dataset._id}`, {body: {gymnastID3: ""}});
+                }
+                if (dataset.gymnastID4 == id){
+                    await this._app.backend.fetch("PATCH", `/teams/${dataset._id}`, {body: {gymnastID4: ""}});
+                }                       
+            }
             await this._app.backend.fetch("DELETE", `/gymnasts/${id}`);
             
         } catch (ex) {
