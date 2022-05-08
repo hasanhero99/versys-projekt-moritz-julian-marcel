@@ -101,18 +101,92 @@ export default class Reck extends Page {
 
         let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
 
-        let homeTeam = await this._app.backend.fetch("GET", "/teams/" + competition.HomeTeamID);
-        let awayTeam = await this._app.backend.fetch("GET", "/teams/" + competition.AwayTeamID);
+        let homeTeam = " ";
+        let gymnast_h1 = " ";
+        let gymnast_h2 = " ";
+        let gymnast_h3 = " ";
+        let gymnast_h4 = " ";
 
-        let gymnast_h1 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID1);
-        let gymnast_h2 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID2);
-        let gymnast_h3 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID3);
-        let gymnast_h4 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID4);
+        let awayTeam = " "; 
+        let gymnast_a1 = " ";
+        let gymnast_a2 = " ";    
+        let gymnast_a3 = " ";      
+        let gymnast_a4 = " ";
 
-        let gymnast_a1 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID1);
-        let gymnast_a2 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID2);
-        let gymnast_a3 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID3);
-        let gymnast_a4 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID4);
+
+
+
+        //Prüfung, ob jede ID des Gästeteams vorhanden ist
+        if(!(competition.HomeTeamID == " ")){
+            homeTeam = await this._app.backend.fetch("GET", "/teams/" + competition.HomeTeamID);
+            
+            if(!(homeTeam.gymnastID1 == " ")){
+                gymnast_h1 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID1);
+            }   
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_h2 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID2);
+            }        
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_h3 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID3);
+            }     
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_h4 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID4);
+            }
+        }  
+
+        
+        //Prüfung, ob jede ID des Gastteams vorhanden ist
+        if(!(competition.AwayTeamID == " ")){
+            awayTeam = await this._app.backend.fetch("GET", "/teams/" + competition.AwayTeamID);
+        
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_a1 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID1);
+            }  
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_a2 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID2);
+            }
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_a3 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID3);
+            }
+            if(!(homeTeam.gymnastID2 == " ")){
+                gymnast_a4 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID4);
+            }
+        
+        }
+       
+        if(!(homeTeam == " ")){
+            templateElement.querySelector(".inp_team").value = homeTeam.name;
+        }
+        if(!(awayTeam == " ")){
+            templateElement.querySelector(".inp_team2").value = awayTeam.name;
+        }
+    
+
+        if(!(gymnast_h1 == " ")){
+            templateElement.querySelector(".inp_eingabe11").value = (gymnast_h1.name + " " + gymnast_h1.surname);
+        }
+        if(!(gymnast_h2 == " ")){
+            templateElement.querySelector(".inp_eingabe12").value = (gymnast_h2.name + " " + gymnast_h2.surname);
+        }
+        if(!(gymnast_h3 == " ")){
+            templateElement.querySelector(".inp_eingabe13").value = (gymnast_h3.name + " " + gymnast_h3.surname);
+        }
+        if(!(gymnast_h4 == " ")){
+            templateElement.querySelector(".inp_eingabe14").value = (gymnast_h4.name + " " + gymnast_h4.surname);
+        }
+
+        if(!(gymnast_a1 == " ")){
+            templateElement.querySelector(".inp_eingabe11").value = (gymnast_a1.name + " " + gymnast_a1.surname);
+        }
+        if(!(gymnast_a2 == " ")){
+            templateElement.querySelector(".inp_eingabe12").value = (gymnast_a2.name + " " + gymnast_a2.surname);
+        }
+        if(!(gymnast_a3 == " ")){
+            templateElement.querySelector(".inp_eingabe13").value = (gymnast_a3.name + " " + gymnast_a3.surname);
+        }
+        if(!(gymnast_a4 == " ")){
+            templateElement.querySelector(".inp_eingabe14").value = (gymnast_a4.name + " " + gymnast_a4.surname);
+        }
 
 
         let scoreDisciplineHome = competition.scoreHomeTeam.HorizontalBars.Scores;
@@ -129,21 +203,6 @@ export default class Reck extends Page {
         templateElement.querySelector(".text_ergebnis23").value = scoreDisciplineAway.Score3;
         templateElement.querySelector(".text_ergebnis24").value = scoreDisciplineAway.Score4;
         templateElement.querySelector(".text_ergebnis_gesamt2").value = await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
-
-
-        templateElement.querySelector(".inp_team").value = homeTeam.name;
-        templateElement.querySelector(".inp_team2").value = awayTeam.name;
-
-        templateElement.querySelector(".inp_eingabe11").value = (gymnast_h1.name + " " + gymnast_h1.surname);
-        templateElement.querySelector(".inp_eingabe12").value = (gymnast_h2.name + " " + gymnast_h2.surname);
-        templateElement.querySelector(".inp_eingabe13").value = (gymnast_h3.name + " " + gymnast_h3.surname);
-        templateElement.querySelector(".inp_eingabe14").value = (gymnast_h4.name + " " + gymnast_h4.surname);
-
-
-        templateElement.querySelector(".inp_eingabe21").value = (gymnast_a1.name + " " + gymnast_a1.surname);
-        templateElement.querySelector(".inp_eingabe22").value = (gymnast_a2.name + " " + gymnast_a2.surname);
-        templateElement.querySelector(".inp_eingabe23").value = (gymnast_a3.name + " " + gymnast_a3.surname);
-        templateElement.querySelector(".inp_eingabe24").value = (gymnast_a4.name + " " + gymnast_a4.surname);
     }
 
 

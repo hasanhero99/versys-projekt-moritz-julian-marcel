@@ -110,13 +110,13 @@ export default class Teams_alle extends Page {
                 let dataset = competitionSearch[index];
                 
                 if (dataset.HomeTeamID == id){
-                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {HomeTeamID: ""}});
+                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {HomeTeamID: " "}});
                 }
                 if (dataset.AwayTeamID == id){
-                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {AwayTeamID: ""}});
+                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {AwayTeamID: " "}});
                 }
                 if (dataset.WinnerTeamID == id){
-                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {WinnerTeamID: ""}});
+                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {WinnerTeamID: " "}});
                 }
                                       
             }
