@@ -71,8 +71,15 @@ export default class Teams_alle extends Page {
                 if (dataset.gymnastID4 == personen[index2]._id){
                     html = html.replace("$ID4$", "" + personen[index2].name + " " + personen[index2].surname);
                 }
+
+                
             }
-            
+
+            html = html.replace("$ID1$", "Turner 1 ist nicht mehr eingetragen");
+            html = html.replace("$ID2$", "Turner 2 ist nicht mehr eingetragen");
+            html = html.replace("$ID3$", "Turner 3 ist nicht mehr eingetragen");
+            html = html.replace("$ID4$", "Turner 4 ist nicht mehr eingetragen");
+
             html = html.replace("$NAME$", dataset.name);
 
             // Element in die Liste einfügen
