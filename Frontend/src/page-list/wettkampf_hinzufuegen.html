@@ -17,34 +17,51 @@
         margin-bottom: 1em;
     }
 
+    .teamHolder{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
     /* AKTIONSBUTTONS */
-    main .actions {
+    
+    .actions{
         display: flex;
-        justify-content: space-between;
+        margin-top: 25px;
+        margin-left: 20px;
     }
+    .button{
+        text-decoration: none;
+        color: lightgrey;
+        padding: 5px 50px;
+        border: 3px solid lightgrey;
+        position: relative;
+        justify-content: center;
 
-    main .actions>div {
-        padding: 0.5em;
-        margin: 0.5em;
-
-        background-color: #e0e0e0;
-        transition: background-color 0.5s;
-
-        flex: 1;
-        text-align: center;
-    }
-
-    main .actions>div:first-child {
-        margin-left: 0;
-    }
-
-    main .actions>div:last-child {
-        margin-right: 0;
-    }
-
-    main .actions>div:hover {
-        background-color: #f0f0f0;
         cursor: pointer;
+    }
+    .button::before,
+    .button::after{
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 20px;
+        border: inherit;
+        transition: all .5s;
+    }
+    .button::before{
+        top: -8px;
+        left: -8px;
+        border-width: 3px 0 0 3px;
+    }
+    .button::after{
+        bottom: -8px;
+        right: -8px;
+        border-width: 0 3px 3px 0;
+    }
+    .button:hover::before,
+    .button:hover::after{
+        width: calc(100% + 13px);
+        height: calc(100% + 13px);
     }
 </style>
 
@@ -54,13 +71,13 @@
         <div>
             <input class="name" placeholder="Wettkampf" value="" />
         </div>
-        <div id="container">
+        <div id="container" class = "teamHolder">
         </div>
-        <div id="container2">
+        <div id="container2" class = "teamHolder">
         </div>
         <div class="actions">
             <div class="action save">
-                <a>💾</a>
+                <a class = "button">💾</a>
             </div>
         </div>
 </main>

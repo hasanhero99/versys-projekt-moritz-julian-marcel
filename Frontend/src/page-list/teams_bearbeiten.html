@@ -18,25 +18,6 @@
     }
 
     /* AKTIONSBUTTONS */
-    main .actions {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    main .actions>div {
-        padding: 0.5em;
-        margin: 0.5em;
-
-        background-color: #e0e0e0;
-        transition: background-color 0.5s;
-
-        flex: 1;
-        text-align: center;
-    }
-
-    main .actions>div:first-child {
-        margin-left: 0;
-    }
 
     .contenedor {
         width: 100%;
@@ -63,58 +44,78 @@
         margin-top: 7.5em;
     }
 
-     /* AKTIONSBUTTONS */
-     main .actions {
+    .bigContainer{
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
     }
 
-    main .actions>div {
-        padding: 0.5em;
-        margin: 0.5em;
-
-        background-color: #e0e0e0;
-        transition: background-color 0.5s;
-
-        flex: 1;
-        text-align: center;
+     /* AKTIONSBUTTONS */
+     .actions{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
     }
+    .button{
+        text-decoration: none;
+        color: lightgrey;
+        padding: 10px 400px;
+        border: 3px solid lightgrey;
+        position: relative;
+        justify-content: center;
 
-    main .actions>div:first-child {
-        margin-left: 0;
-    }
-
-    main .actions>div:last-child {
-        margin-right: 0;
-    }
-
-    main .actions>div:hover {
-        background-color: #f0f0f0;
         cursor: pointer;
+    }
+    .button::before,
+    .button::after{
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 20px;
+        border: inherit;
+        transition: all .5s;
+    }
+    .button::before{
+        top: -15px;
+        left: -15px;
+        border-width: 3px 0 0 3px;
+    }
+    .button::after{
+        bottom: -15px;
+        right: -15px;
+        border-width: 0 3px 3px 0;
+    }
+    .button:hover::before,
+    .button:hover::after{
+        width: calc(100% + 27px);
+        height: calc(100% + 27px);
     }
 </style>
 
 <!-- Inhalt der Seite -->
 <main>
-    <div>
-        <div class="contenedor inp_team" id="ueberschrife">
-            <p>Teamname</p>
-        </div>
+    <div class = "bigContainer">
         <div>
-            <input type="text" class="inp_team" placeholder="Teamname" id="teamname">
+            <div class="contenedor inp_team" id="ueberschrife">
+                <p>Teamname</p>
+            </div>
+            <div>
+                <input type="text" class="inp_team" placeholder="Teamname" id="teamname">
+            </div>
+            <div class="contenedor" id="ueberschrife">
+                <p>Teammitglied 1</p>
+                <p>Teammitglied 2</p>
+                <p>Teammitglied 3</p>
+                <p>Teammitglied 4</p>
+            </div>
+            <div class="contenedor">
+                <div id="container1"></div>
+                <div id="container2"></div>
+                <div id="container3"></div>
+                <div id="container4"></div>
+            </div>
+            
         </div>
-        <div class="contenedor" id="ueberschrife">
-            <p>Teammitglied 1</p>
-            <p>Teammitglied 2</p>
-            <p>Teammitglied 3</p>
-            <p>Teammitglied 4</p>
-        </div>
-        <div class="contenedor">
-            <div id="container1"></div>
-            <div id="container2"></div>
-            <div id="container3"></div>
-            <div id="container4"></div>
-        </div>
+
         <div class="actions">
             <div class="action save">
                 <a class = "button">💾</a>
