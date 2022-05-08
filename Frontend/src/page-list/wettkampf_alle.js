@@ -82,6 +82,7 @@ export default class alleWettkaempfe extends Page {
         
             html = html.replace("$HomeTeam$", "Gastgeber nicht mehr vorhanden");
             html = html.replace("$AwayTeam$", "Gästeteam nicht mehr vorhanden");
+            html = html.replace("$WinnerTeam$", "Siegerteam existiert nicht mehr");
                     
             
 

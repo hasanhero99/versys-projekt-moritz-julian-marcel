@@ -61,16 +61,16 @@ export default class Teams_alle extends Page {
             let html = templateHtml;
             for (let index2 in personen){
                 if (dataset.gymnastID1 == personen[index2]._id){
-                    html = html.replace("$ID1$", "" + personen[index2].name + " " + personen[index2].surname);
+                    html = html.replace("$ID1$", "Turner 1: " + personen[index2].name + " " + personen[index2].surname);
                 }
                 if (dataset.gymnastID2 == personen[index2]._id){
-                    html = html.replace("$ID2$", "" + personen[index2].name + " " + personen[index2].surname);
+                    html = html.replace("$ID2$", "Turner 2: " + personen[index2].name + " " + personen[index2].surname);
                 }
                 if (dataset.gymnastID3 == personen[index2]._id){
-                    html = html.replace("$ID3$", "" + personen[index2].name + " " + personen[index2].surname);
+                    html = html.replace("$ID3$", "Turner 3: " + personen[index2].name + " " + personen[index2].surname);
                 }
                 if (dataset.gymnastID4 == personen[index2]._id){
-                    html = html.replace("$ID4$", "" + personen[index2].name + " " + personen[index2].surname);
+                    html = html.replace("$ID4$", "Turner 4: " + personen[index2].name + " " + personen[index2].surname);
                 }
 
                 
@@ -103,6 +103,24 @@ export default class Teams_alle extends Page {
 
         // Datensatz löschen und Seite neuladen
         try {
+            let competitionSearch = await this._app.backend.fetch("GET", `/competitions`);
+
+            for(let index in competitionSearch){
+                // Platzhalter ersetzen
+                let dataset = competitionSearch[index];
+                
+                if (dataset.HomeTeamID == id){
+                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {HomeTeamID: ""}});
+                }
+                if (dataset.AwayTeamID == id){
+                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {AwayTeamID: ""}});
+                }
+                if (dataset.WinnerTeamID == id){
+                    await this._app.backend.fetch("PATCH", `/competitions/${dataset._id}`, {body: {WinnerTeamID: ""}});
+                }
+                                      
+            }
+
             await this._app.backend.fetch("DELETE", `/teams/${id}`);
             
         } catch (ex) {
