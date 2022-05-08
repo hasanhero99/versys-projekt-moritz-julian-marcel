@@ -26,7 +26,7 @@ export default class CompetitionService {
     }
 
     /**
-     * legt Wettkampf an
+     * Legt Wettkampf an
      * @param {competition} competition enthält Information des Clients zur Anlegung des Wettkampfes  
      * @returns die neue Wettkampf Entität
      */
@@ -47,7 +47,7 @@ export default class CompetitionService {
     }
 
     /**
-     * 
+     * Bestimmten Wettkampf ausgeben
      * @param {*} id 
      * @returns 
      */
@@ -57,7 +57,7 @@ export default class CompetitionService {
     }
 
     /**
-     * Einzelne Werte einer Adresse überschreiben
+     * Einzelne Werte eines Wettkampfes überschreiben
      */
     async update(id, competition) {
         let oldCompetition = await this._competitions.findOne({_id: new ObjectId(id)});
@@ -83,7 +83,7 @@ export default class CompetitionService {
     }
 
     /**
-     * Einzelne Adresse löschen
+     * Einzelnen Wettkampf löschen
      */
     async delete(id) {
         let result = await this._competitions.deleteOne({_id: new ObjectId(id)});

@@ -27,7 +27,7 @@ export default class GymnastService {
     }
 
     /**
-     * Adresse anlegen
+     * Turner anlegen
      */
     async create(gymnast) {
         gymnast = gymnast || {};
@@ -42,7 +42,7 @@ export default class GymnastService {
     }
 
     /**
-     * Einzelne Adresse anhand ihrer ID lesen
+     * Einzelnen Turner anhand seiner ID lesen
      */
     async read(id) {
         let result = await this._gymnasts.findOne({_id: new ObjectId(id)});
@@ -50,7 +50,7 @@ export default class GymnastService {
     }
 
     /**
-     * Einzelne Werte einer Adresse überschreiben
+     * Einzelne Werte eines Turners überschreiben
      */
     async update(id, gymnast) {
         let oldGymnast = await this._gymnasts.findOne({_id: new ObjectId(id)});
@@ -71,7 +71,7 @@ export default class GymnastService {
     }
 
     /**
-     * Einzelne Adresse löschen
+     * Einzelnen Turner löschen
      */
     async delete(id) {
         let result = await this._gymnasts.deleteOne({_id: new ObjectId(id)});

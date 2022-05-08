@@ -42,7 +42,7 @@ export default class CompetitionController{
 
 
     /**
-     * Get /competitions
+     * GET /competitions
      * Alle Wettkämpfe bekommen
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -83,7 +83,7 @@ export default class CompetitionController{
     }
 
     /**
-     * GET /competitions
+     * GET /competitions/id
      * Einen bestimmten Wettkampf bekommen
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -104,7 +104,7 @@ export default class CompetitionController{
 
     
     /**
-     * PUT /competitions
+     * PUT /competitions/id
      * Alle Attribute von einem Wettkampf überschreiben
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -123,7 +123,7 @@ export default class CompetitionController{
     }
 
     /**
-     * PATCH /competitions
+     * PATCH /competitions/id
      * Bestimmte Attribute von Wettkampf überschreiben
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -147,7 +147,7 @@ export default class CompetitionController{
     }
 
     /**
-     * DELETE /competitions
+     * DELETE /competitions/id
      * Wettkampf löschen
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers

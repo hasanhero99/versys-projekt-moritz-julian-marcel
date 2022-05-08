@@ -40,7 +40,7 @@ export default class TeamController {
     }
 
     /**
-     * GET /teams:
+     * GET /teams
      * Teams suchen
      */
     async search(req, res, next) {
@@ -57,7 +57,7 @@ export default class TeamController {
     }
 
     /**
-     * POST /teams:
+     * POST /teams
      * Team anlegen
      */
     async create(req, res, next) {
@@ -77,7 +77,7 @@ export default class TeamController {
     }
 
     /**
-     * GET /teams/:id
+     * GET /teams/id
      * Einzelnes Team lesen
      */
     async read(req, res, next) {
@@ -96,9 +96,9 @@ export default class TeamController {
     }
 
     /**
-     * PUT /teams/:id
-     * PATCH /teams/:id
-     * Einzelne Werte einer Adresse ändern
+     * PUT /teams/id
+     * PATCH /teams/id
+     * Einzelne Werte eines Teams ändern
      */
     async update(req, res, next) {
         // Team in der Datenbank ändern
@@ -116,7 +116,7 @@ export default class TeamController {
     }
 
     /**
-     * DELETE /teams/:id
+     * DELETE /teams/id
      * Einzelnes Team löschen
      */
     async delete(req, res, next) {

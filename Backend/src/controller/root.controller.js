@@ -1,7 +1,6 @@
 "use strict"
 
 import {wrapHandler} from "../utils.js";
-import path from "path";
 import { readFile } from "fs/promises";
 
 /**
@@ -30,7 +29,6 @@ import { readFile } from "fs/promises";
      */
     async index(req, res, next) {
         //wenn mit send aber nicht sendresult funktioniert OpenApi prüfen
-        //// TODO: Example-Collection hier durch eigene Collections ersetzen ////
         res.sendResult([
             {
                 _name: "gymnast",
@@ -47,12 +45,6 @@ import { readFile } from "fs/promises";
                 query: {url: "/competitions", method: "GET", queryParams: ["_id", "name", "HomeTeamID", "AwayTeamID", "WinnerTeamID", "scoreHomeTeam", "scoreAwayTeam"]},
                 create: {url: "/gymnasts", method: "POST"},
             },
-
-            // {
-            //     _name: "user",
-            //     query: {url: "/user", method: "GET", queryParams: ["username"]},
-            //     create: {url: "/user", method: "POST"},
-            // }
         ]);
 
         next();

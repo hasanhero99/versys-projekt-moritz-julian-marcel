@@ -5,7 +5,6 @@ import OpenApiEnforcer from "openapi-enforcer";
 import OpenApiEnforcerMiddleware from "@dschulmeis/restify-openapi-enforcer-middleware";
 import DatabaseFactory from "./database.js";
 import RootController from "./controller/root.controller.js";
-import AddressController from "./controller/address.controller.js";
 import GymnastController from "./controller/gymnast.controller.js";
 import TeamController from "./controller/team.controller.js";
 import CompetitionController from "./controller/competition.controller.js";
@@ -91,25 +90,9 @@ server.use(OpenApiEnforcerMiddleware(openApiEnforcer));
 // HTTP-Handler-Funktionen registrieren
 //// TODO: Weitere Controller-Klassen hinzufügen ////
 new RootController(server, "/", openApiFile);
-new AddressController(server, "/address");
 new GymnastController(server, "/gymnasts");
 new TeamController(server, "/teams");
 new CompetitionController(server, "/competitions");
-
-
-// server.get("/", function(req, res, next) {
-//     res.send(200, "Hallo, Welt!");
-//     return next();
-// });
-//
-// server.get("/address", function(req, res, next) {
-//     res.send(200, [
-//         {first_name: "Willy", last_name: "Tanner"},
-//         {first_name: "Alf", last_name: "Clausen"},
-//         {first_name: "David", last_name: "Ducovny"},
-//     ]);
-//     return next();
-// });
 
 // Server tatsächlich starten
 server.listen(config.port, config.host, function() {

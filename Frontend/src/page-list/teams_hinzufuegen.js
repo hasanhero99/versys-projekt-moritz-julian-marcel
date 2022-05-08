@@ -126,6 +126,10 @@ export default class teams_hinzufuegen extends Page {
         this._dataset.gymnastID3 = document.getElementById("person3").value.trim();
         this._dataset.gymnastID4 = document.getElementById("person4").value.trim();
 
+        if(!this._dataset.name){
+            alert("Bitte geben Sie einen Team Namen ein");
+            return;
+        }
         if (!this._dataset.gymnastID1) {
             alert("Bitte wählen sie Person eins aus");
             return;

@@ -11,11 +11,11 @@ export default class GymnastController{
         this._prefix = prefix;
         this._service = new GymnastService();
 
-         // Collection: Liste der Wettkämpfe
+         // Collection: Liste der Turner
         server.get(prefix, wrapHandler(this, this.search));
         server.post(prefix, wrapHandler(this, this.create));
 
-        // Ressource: eine einzelner Turner
+        // Ressource: eines einzelnen Turners
         server.get(prefix + "/:id", wrapHandler(this, this.read));
         server.put(prefix + "/:id", wrapHandler(this, this.put));
         server.patch(prefix + "/:id", wrapHandler(this, this.patch));
@@ -83,7 +83,7 @@ export default class GymnastController{
     }
 
     /**
-     * GET /gymnasts
+     * GET /gymnasts/id
      * Einen bestimmten Turner bekommen
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -104,7 +104,7 @@ export default class GymnastController{
 
     
     /**
-     * PUT /gymnasts
+     * PUT /gymnasts/id
      * Alle Attribute von einem Turner überschreiben
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -127,7 +127,7 @@ export default class GymnastController{
     }
 
     /**
-     * PATCH /gymnasts
+     * PATCH /gymnasts/id
      * Bestimmte Attribute von Turner überschreiben
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
@@ -147,7 +147,7 @@ export default class GymnastController{
         
 
     /**
-     * DELETE /gymnasts
+     * DELETE /gymnasts/id
      * Turner löschen
      * @param {req} req Request des Clients
      * @param {res} res Response des Servers
