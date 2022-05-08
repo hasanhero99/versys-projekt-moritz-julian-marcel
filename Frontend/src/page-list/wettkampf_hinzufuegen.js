@@ -192,6 +192,8 @@ export default class wettkampf_hinzufuegen extends Page {
     }
 
     async _saveAndExit() {
+        let competitionID;
+        let competitionResponse;
         // Eingegebene Werte prüfen
         this._dataset.name = this.name.value.trim();
         console.log(document.getElementById("teams").value);
@@ -216,14 +218,22 @@ export default class wettkampf_hinzufuegen extends Page {
         // Datensatz speichern
         try {
             if (this._editId) {
-
-                await this._app.backend.fetch("PUT", this._url, { body: this._dataset });
+                competitionResponse = await this._app.backend.fetch("PUT", this._url, { body: this._dataset });
+                console.log("CompetitionResponseinhalt: " + competitionResponse);
             } else {
-                await this._app.backend.fetch("POST", this._url, { body: this._dataset });
+                competitionResponse = await this._app.backend.fetch("POST", this._url, { body: this._dataset });
+                console.log("CompetitionResponseinhalt: " + competitionResponse);
             }
         } catch (ex) {
             this._app.showException(ex);
             return;
         }
+
+        console.log("CompetitionResponseinhalt nach try-Block: " + competitionResponse);
+
+        competitionID = competitionResponse._id;
+        console.log("ID vor Seitenwechsel: " + competitionID);
+
+        location.hash = `#/wettkampf/boden/${competitionID}`;
     }
 };

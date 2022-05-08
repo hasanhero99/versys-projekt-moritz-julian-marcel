@@ -67,6 +67,7 @@
      main .actions {
         display: flex;
         justify-content: space-between;
+        margin-top: 10px;
     }
 
     main .actions>div {
@@ -80,17 +81,15 @@
         text-align: center;
     }
 
-    main .actions>div:first-child {
-        margin-left: 0;
-    }
-
-    main .actions>div:last-child {
-        margin-right: 0;
-    }
+    
 
     main .actions>div:hover {
         background-color: #f0f0f0;
         cursor: pointer;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
     }
 </style>
 
@@ -98,7 +97,7 @@
 <!-- Hier sind die Felder in denen das Ergebnis angezeigt wird  -->
 <main>
     <div>
-        <div class="">
+        <div class="container">
             <div class="list">
                 <div>
                     <div class="contenedor inp_team" id="ueberschrife">
@@ -119,13 +118,16 @@
                         <div id="container3"></div>
                         <div id="container4"></div>
                     </div>
-                    <div class="actions">
-                        <div class="action save">
-                            <a>💾</a>
-                        </div>
-                    </div>
                 </div>
             </div>
+
+            <div class="actions">
+                <div class="action save">
+                    <a>💾</a>
+                </div>
+            </div>
+                
+            
         </div>
     </div>
 </main>
