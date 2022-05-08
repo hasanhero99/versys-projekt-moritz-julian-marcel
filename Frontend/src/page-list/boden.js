@@ -42,13 +42,13 @@ export default class Boden extends Page {
 
         this.hide(competition, templateElement);
 
-        let buttonPferd = this._mainElement.querySelector(".navigation");
-        buttonPferd.querySelector(".navPferd").addEventListener("click", () => location.hash = `#/wettkampf/pferd/${id}`);
-        buttonPferd.querySelector(".navRinge").addEventListener("click", () => location.hash = `#/wettkampf/ringe/${id}`);
-        buttonPferd.querySelector(".navSprung").addEventListener("click", () => location.hash = `#/wettkampf/sprung/${id}`);
-        buttonPferd.querySelector(".navBarren").addEventListener("click", () => location.hash = `#/wettkampf/barren/${id}`);
-        buttonPferd.querySelector(".navReck").addEventListener("click", () => location.hash = `#/wettkampf/reck/${id}`);
-        buttonPferd.querySelector(".navErgebnis").addEventListener("click", () => location.hash = `#/wettkampf/ergebnis/${id}`);
+        let button = this._mainElement.querySelector(".navigation");
+        button.querySelector(".navPferd").addEventListener("click", () => location.hash = `#/wettkampf/pferd/${id}`);
+        button.querySelector(".navRinge").addEventListener("click", () => location.hash = `#/wettkampf/ringe/${id}`);
+        button.querySelector(".navSprung").addEventListener("click", () => location.hash = `#/wettkampf/sprung/${id}`);
+        button.querySelector(".navBarren").addEventListener("click", () => location.hash = `#/wettkampf/barren/${id}`);
+        button.querySelector(".navReck").addEventListener("click", () => location.hash = `#/wettkampf/reck/${id}`);
+        button.querySelector(".navErgebnis").addEventListener("click", () => location.hash = `#/wettkampf/ergebnis/${id}`);
 
 
     }
