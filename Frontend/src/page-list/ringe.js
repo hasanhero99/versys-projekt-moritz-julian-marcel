@@ -97,6 +97,12 @@ export default class Ringe extends Page {
 
     }
 
+
+    /**
+     * In dieser Methode werden alle Benötigten Wettkampf, Teams und Turner geladen und in die Textfelder der Website eingefügt
+     * @param {id} id Id des Wettkampfes 
+     * @param {templateElement} templateElement template Element der Seite um auf HTML Elemente zuzugreifen
+     */
     async load(id, templateElement){
 
         let competition = await this._app.backend.fetch("GET", "/competitions/" + id);
@@ -146,7 +152,12 @@ export default class Ringe extends Page {
         templateElement.querySelector(".inp_eingabe24").value = (gymnast_a4.name + " " + gymnast_a4.surname);
     }
 
-
+    /**
+     * Ignoriert den niedrigsten der vier Turner und bildet die Summe der restlichen Turner
+     * @param {scores} scores Scores der Teams als JSON objekt 
+     * @param {help} help Erster Score eines Turners
+     * @returns 
+     */
     async ergebnis(scores,help){
         let help2 = 0;
         let score = 0;
@@ -167,6 +178,12 @@ export default class Ringe extends Page {
 
         return parseFloat(score);
     }
+
+    /**
+     * Versteckt die HTML Elemente die zur Eingabe der Werte dienen, wenn ein Wettkampf abgeschlossen ist und somit nicht mehr bearbeitet werden darf
+     * @param {competion} competition Wettkampf als JSON Objekt
+     * @param {templateElement} templateElement template Element der Seite um auf HTML Elemente zuzugreifen
+     */
     async hide(competition,templateElement){
         templateElement.querySelector(".hidden1").style.visibility = 'hidden';
         templateElement.querySelector(".hidden2").style.visibility = 'hidden';

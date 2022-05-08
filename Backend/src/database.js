@@ -20,29 +20,7 @@ class DatabaseFactory {
         // Datenbankverbindung herstellen
         this.client = new MongoClient(connectionUrl);
         await this.client.connect();
-        this.database = this.client.db("app_database");
-
-        await this._createDemoDataGymnast();
-        
-    }
-
-    /*
-    * Demo Daten für Turner
-    */
-    async _createDemoDataGymnast() {
-        let address = this.database.collection("gymnast");
-
-        if (await address.estimatedDocumentCount() === 0) {
-            address.insertMany([
-                {
-                    name: "Marcel",
-                    surname: "Held"
-                }, {
-                    name: "Moritz",
-                    surname: "Dieterich",
-                }
-            ]);
-        }
+        this.database = this.client.db("app_database");        
     }
 }
 

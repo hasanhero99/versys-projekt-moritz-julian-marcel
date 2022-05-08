@@ -111,7 +111,7 @@ export default class Ergebnis extends Page {
             this.speichern(competition,resultH,resultA,id);
     } 
 
-    //Registerkarten anklickbar machen
+        //Registerkarten anklickbar machen
         let button = this._mainElement.querySelector(".navigation");
 
         button.querySelector(".navBoden").addEventListener("click", () => location.hash = `#/wettkampf/boden/${id}`);
@@ -123,7 +123,12 @@ export default class Ergebnis extends Page {
 
     }
 
-
+    /**
+     * Ignoriert den niedrigsten Wert der vier Turner und bildet die Summe der restlichen Turner
+     * @param {scores} scores Scores der Teams als JSON objekt 
+     * @param {help} help Erster Score eines Turners
+     * @returns 
+     */
     async ergebnis(scores, help) {
         let help2 = 0;
         let score = 0;
@@ -145,6 +150,13 @@ export default class Ergebnis extends Page {
         return parseFloat(score);
     }
 
+    /**
+     * 
+     * @param {competition} competition JSON Element des Wettkampfes
+     * @param {resultH} resultH Gesamtpunktzahl des Heimteams
+     * @param {resultA} resultA Gesamtpunktzahl des Gastteams
+     * @param {id} id ID des Wettkampfes
+     */
     async speichern(competition,resultH,resultA,id){
         if(resultH > resultA){
             await this._app.backend.fetch("PATCH", "/competitions/" + id,{
