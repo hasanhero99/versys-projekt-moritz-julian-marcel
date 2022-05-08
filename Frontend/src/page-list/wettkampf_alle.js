@@ -56,26 +56,34 @@ export default class alleWettkaempfe extends Page {
             let html = templateHtml;
             for (let index2 in teams){
                 if (dataset.HomeTeamID == teams[index2]._id){
-                    html = html.replace("$HomeTeam$", "" + teams[index2].name);
+                    html = html.replace("$HomeTeam$", "Gastgeber: " + teams[index2].name);
                 }
                 if (dataset.AwayTeamID == teams[index2]._id){
-                    html = html.replace("$AwayTeam$", "" + teams[index2].name);
+                    html = html.replace("$AwayTeam$", "Gästeteam: " + teams[index2].name);
                 }
                 if (dataset.WinnerTeamID == teams[index2]._id){
                     
-                    html = html.replace("$WinnerTeam$", "" + teams[index2].name);
+                    html = html.replace("$WinnerTeam$", "Sieger: " + teams[index2].name);
                 }
                 if(dataset.WinnerTeamID == ""){
                     html = html.replace("$WinnerTeam$", "");
                     
                 }
                 if(dataset.WinnerTeamID == "Unentschieden"){
-                    html = html.replace("$WinnerTeam$", "Unentschieden");
+                    html = html.replace("$WinnerTeam$", "Ergebnis: Unentschieden");
                     
                 }
+
+                
                 
             }
+
+        
+            html = html.replace("$HomeTeam$", "Gastgeber nicht mehr vorhanden");
+            html = html.replace("$AwayTeam$", "Gästeteam nicht mehr vorhanden");
+                    
             
+
             html = html.replace("$name$", dataset.name);
 
             // Element in die Liste einfügen

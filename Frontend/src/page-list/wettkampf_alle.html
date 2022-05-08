@@ -25,6 +25,8 @@
 
     main .name {
         font-size: 150%;
+        display: flex;
+        justify-content: space-between;
     }
 
     /* AKTIONSBUTTONS */
@@ -56,6 +58,53 @@
         background-color: #f0f0f0;
         cursor: pointer;
     }
+
+
+    .buttonHolder{
+        margin-top: 15px;
+        margin-right: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+    .buttonLink{
+        text-decoration: none;
+        color: darkgrey;
+        padding: 3px 25px;
+        border: 3px solid lightgrey;
+        position: relative;
+        justify-content: center;
+
+        cursor: pointer;
+    }
+    .buttonLink::before,
+    .buttonLink::after{
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 20px;
+        border: inherit;
+        transition: all .5s;
+    }
+    .buttonLink::before{
+        top: -8px;
+        left: -8px;
+        border-width: 3px 0 0 3px;
+    }
+    .buttonLink::after{
+        bottom: -8px;
+        right: -8px;
+        border-width: 0 3px 3px 0;
+    }
+    .buttonLink:hover::before,
+    .buttonLink:hover::after{
+        width: calc(100% + 13px);
+        height: calc(100% + 13px);
+    }
+
+   
 </style>
 
 <!-- Inhalt der Seite -->
@@ -73,11 +122,20 @@
         <li class="list-entry" data-id="$ID$">
             
             <div class="name" >
-                <div>$name$</div>
-                <div>$HomeTeam$</div>
-                <div>$AwayTeam$</div>
-                <div>$WinnerTeam$</div>
-                <div class = "buttonLink"><a>Anzeigen</a></div>
+                <div class = "competitionHolder">
+                    <div>$name$</div>
+                    <div>$HomeTeam$</div>
+                    <div>$AwayTeam$</div>
+                    <div>$WinnerTeam$</div>
+                </div>
+                    
+
+                <div class = "buttonHolder">
+                    <div class = "buttonLink">
+                      <a>Anzeigen</a>
+                    </div>  
+                </div>
+                
             </div>
         
         </li>
