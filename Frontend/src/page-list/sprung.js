@@ -130,10 +130,10 @@ export default class Sprung extends Page {
             if(!(homeTeam.gymnastID2 == " ")){
                 gymnast_h2 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID2);
             }        
-            if(!(homeTeam.gymnastID2 == " ")){
+            if(!(homeTeam.gymnastID3 == " ")){
                 gymnast_h3 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID3);
             }     
-            if(!(homeTeam.gymnastID2 == " ")){
+            if(!(homeTeam.gymnastID4 == " ")){
                 gymnast_h4 = await this._app.backend.fetch("GET", "/gymnasts/" + homeTeam.gymnastID4);
             }
         }  
@@ -143,21 +143,40 @@ export default class Sprung extends Page {
         if(!(competition.AwayTeamID == " ")){
             awayTeam = await this._app.backend.fetch("GET", "/teams/" + competition.AwayTeamID);
         
-            if(!(homeTeam.gymnastID2 == " ")){
+            if(!(awayTeam.gymnastID1 == " ")){
                 gymnast_a1 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID1);
             }  
-            if(!(homeTeam.gymnastID2 == " ")){
+            if(!(awayTeam.gymnastID2 == " ")){
                 gymnast_a2 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID2);
             }
-            if(!(homeTeam.gymnastID2 == " ")){
+            if(!(awayTeam.gymnastID3 == " ")){
                 gymnast_a3 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID3);
             }
-            if(!(homeTeam.gymnastID2 == " ")){
+            if(!(awayTeam.gymnastID4 == " ")){
                 gymnast_a4 = await this._app.backend.fetch("GET", "/gymnasts/" + awayTeam.gymnastID4);
             }
         
         }
        
+        
+
+
+        let scoreDisciplineHome = competition.scoreHomeTeam.Vault.Scores;
+        let scoreDisciplineAway = competition.scoreAwayTeam.Vault.Scores;
+
+        templateElement.querySelector(".text_ergebnis11").value = scoreDisciplineHome.Score1;
+        templateElement.querySelector(".text_ergebnis12").value = scoreDisciplineHome.Score2;
+        templateElement.querySelector(".text_ergebnis13").value = scoreDisciplineHome.Score3;
+        templateElement.querySelector(".text_ergebnis14").value = scoreDisciplineHome.Score4;
+        templateElement.querySelector(".text_ergebnis_gesamt1").value = await this.ergebnis(scoreDisciplineHome, scoreDisciplineHome.Score1);
+
+        templateElement.querySelector(".text_ergebnis21").value = scoreDisciplineAway.Score1;
+        templateElement.querySelector(".text_ergebnis22").value = scoreDisciplineAway.Score2;
+        templateElement.querySelector(".text_ergebnis23").value = scoreDisciplineAway.Score3;
+        templateElement.querySelector(".text_ergebnis24").value = scoreDisciplineAway.Score4;
+        templateElement.querySelector(".text_ergebnis_gesamt2").value = await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
+
+
         if(!(homeTeam == " ")){
             templateElement.querySelector(".inp_team").value = homeTeam.name;
         }
@@ -180,33 +199,17 @@ export default class Sprung extends Page {
         }
 
         if(!(gymnast_a1 == " ")){
-            templateElement.querySelector(".inp_eingabe11").value = (gymnast_a1.name + " " + gymnast_a1.surname);
+            templateElement.querySelector(".inp_eingabe21").value = (gymnast_a1.name + " " + gymnast_a1.surname);
         }
         if(!(gymnast_a2 == " ")){
-            templateElement.querySelector(".inp_eingabe12").value = (gymnast_a2.name + " " + gymnast_a2.surname);
+            templateElement.querySelector(".inp_eingabe22").value = (gymnast_a2.name + " " + gymnast_a2.surname);
         }
         if(!(gymnast_a3 == " ")){
-            templateElement.querySelector(".inp_eingabe13").value = (gymnast_a3.name + " " + gymnast_a3.surname);
+            templateElement.querySelector(".inp_eingabe23").value = (gymnast_a3.name + " " + gymnast_a3.surname);
         }
         if(!(gymnast_a4 == " ")){
-            templateElement.querySelector(".inp_eingabe14").value = (gymnast_a4.name + " " + gymnast_a4.surname);
+            templateElement.querySelector(".inp_eingabe24").value = (gymnast_a4.name + " " + gymnast_a4.surname);
         }
-
-        
-        let scoreDisciplineHome = competition.scoreHomeTeam.Vault.Scores;
-        let scoreDisciplineAway = competition.scoreAwayTeam.Vault.Scores;
-
-        templateElement.querySelector(".text_ergebnis11").value = scoreDisciplineHome.Score1;
-        templateElement.querySelector(".text_ergebnis12").value = scoreDisciplineHome.Score2;
-        templateElement.querySelector(".text_ergebnis13").value = scoreDisciplineHome.Score3;
-        templateElement.querySelector(".text_ergebnis14").value = scoreDisciplineHome.Score4;
-        templateElement.querySelector(".text_ergebnis_gesamt1").value = await this.ergebnis(scoreDisciplineHome, scoreDisciplineHome.Score1);
-
-        templateElement.querySelector(".text_ergebnis21").value = scoreDisciplineAway.Score1;
-        templateElement.querySelector(".text_ergebnis22").value = scoreDisciplineAway.Score2;
-        templateElement.querySelector(".text_ergebnis23").value = scoreDisciplineAway.Score3;
-        templateElement.querySelector(".text_ergebnis24").value = scoreDisciplineAway.Score4;
-        templateElement.querySelector(".text_ergebnis_gesamt2").value =  await this.ergebnis(scoreDisciplineAway, scoreDisciplineAway.Score1);
 
         
     }
